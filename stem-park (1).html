@@ -1,0 +1,3832 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f7ff" />
+    <meta
+      name="description"
+      content="STEM Park — понятные идеи и практические проекты для тех, кто любит создавать."
+    />
+    <title>STEM Park — идеи становятся проектами</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17243d;
+        --muted: #65748b;
+        --paper: #f4f7fc;
+        --white: #fff;
+        --green: #2563eb;
+        --green-dark: #1d4ed8;
+        --lime: #8de0ff;
+        --line: #e1e8f3;
+        --orange: #7c9fff;
+        --radius: 24px;
+        --shadow: 0 18px 55px rgba(30, 64, 120, 0.11);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 88px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        color: inherit;
+      }
+      .wrap {
+        width: min(1160px, calc(100% - 48px));
+        margin-inline: auto;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        content: "";
+      }
+
+      .header {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        border-bottom: 1px solid rgba(229, 233, 225, 0.8);
+        background: rgba(247, 247, 242, 0.9);
+        backdrop-filter: blur(16px);
+      }
+      .nav {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 850;
+        letter-spacing: -0.045em;
+      }
+      .brand-mark {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(145deg, #2563eb, #1746ad);
+        color: var(--lime);
+        font-size: 19px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: #526057;
+        font-size: 13px;
+        font-weight: 650;
+      }
+      .nav-links a:hover,
+      .footer-links a:hover {
+        color: var(--green);
+      }
+      [data-subscription-ui][hidden] {
+        display: none !important;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .languages {
+        display: inline-flex;
+        padding: 4px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--white);
+      }
+      .lang-btn {
+        padding: 6px 8px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: #758078;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .lang-btn.active {
+        background: var(--ink);
+        color: var(--white);
+      }
+      .menu-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--white);
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 76px 0 82px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        align-items: center;
+        gap: 46px;
+      }
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 {
+        max-width: 640px;
+        margin: 20px 0 20px;
+        font-size: clamp(48px, 6.3vw, 76px);
+        line-height: 0.99;
+        letter-spacing: -0.075em;
+      }
+      .hero h1 span {
+        color: var(--green);
+      }
+      .hero-copy > p {
+        max-width: 490px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.75;
+      }
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 13px;
+        margin-top: 30px;
+      }
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--green);
+        color: var(--white);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 750;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+        background: var(--green-dark);
+      }
+      .button.secondary {
+        border: 1px solid var(--line);
+        background: var(--white);
+        color: var(--ink);
+      }
+      .button.secondary:hover {
+        background: #edf3ff;
+      }
+      .button .arrow {
+        font-size: 17px;
+        line-height: 1;
+      }
+      .hero-note {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 22px;
+        color: #77837b;
+        font-size: 12px;
+      }
+      .hero-note strong {
+        color: var(--ink);
+      }
+
+      .hero-art {
+        position: relative;
+        display: grid;
+        min-height: 430px;
+        place-items: center;
+        border-radius: 38px;
+        background: #e6f0ff;
+        isolation: isolate;
+      }
+      .art-glow {
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: #b9d7ff;
+        filter: blur(2px);
+      }
+      .art-orbit {
+        position: absolute;
+        width: 330px;
+        height: 330px;
+        border: 1px dashed rgba(37, 99, 235, 0.3);
+        border-radius: 50%;
+      }
+      .art-sun {
+        position: absolute;
+        top: 52px;
+        right: 60px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--lime);
+      }
+      .plant-pot {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        width: 230px;
+        height: 235px;
+        place-items: center;
+        margin-top: 48px;
+        border-radius: 46% 46% 24% 24%;
+        background: #f8fbff;
+        box-shadow: 0 25px 55px rgba(46, 82, 140, 0.16);
+      }
+      .plant-pot::before {
+        position: absolute;
+        right: 25px;
+        bottom: -19px;
+        left: 25px;
+        height: 30px;
+        border-radius: 8px 8px 22px 22px;
+        background: #cfdef3;
+        content: "";
+      }
+      .plant-emoji {
+        position: relative;
+        z-index: 2;
+        margin-top: -22px;
+        font-size: 108px;
+        line-height: 1;
+        filter: drop-shadow(0 8px 8px rgba(49, 79, 130, 0.11));
+      }
+      .art-card {
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 12px 28px rgba(27, 55, 36, 0.1);
+      }
+      .art-card.first {
+        top: 76px;
+        left: 20px;
+        transform: rotate(-5deg);
+      }
+      .art-card.second {
+        right: 15px;
+        bottom: 68px;
+        transform: rotate(4deg);
+      }
+      .art-card .emoji {
+        font-size: 22px;
+      }
+      .art-card b {
+        display: block;
+        font-size: 11px;
+      }
+      .art-card small {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .art-spark {
+        position: absolute;
+        z-index: 2;
+        color: #4684e8;
+        font-size: 27px;
+      }
+      .spark-one {
+        top: 51px;
+        left: 48%;
+      }
+      .spark-two {
+        right: 22%;
+        top: 40%;
+        font-size: 18px;
+      }
+
+      .stats {
+        border-block: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.45);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 23px 0;
+      }
+      .stat {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        gap: 9px;
+        border-right: 1px solid var(--line);
+      }
+      .stat:last-child {
+        border-right: 0;
+      }
+      .stat strong {
+        font-size: 23px;
+        letter-spacing: -0.05em;
+      }
+      .stat span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      section {
+        padding: 100px 0;
+      }
+      .section-head {
+        margin-bottom: 30px;
+      }
+      .section-head h2,
+      .about-copy h2,
+      .subscribe-copy h2 {
+        margin: 12px 0 0;
+        font-size: clamp(34px, 4.5vw, 52px);
+        line-height: 1.05;
+        letter-spacing: -0.065em;
+      }
+      .section-head > p {
+        max-width: 620px;
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .projects-section {
+        background: var(--white);
+      }
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .project-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin: -12px 0 26px;
+      }
+      .filter-button {
+        min-height: 36px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 750;
+        transition:
+          background 0.18s ease,
+          color 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .filter-button:hover {
+        border-color: #a9c4f4;
+        color: var(--green);
+      }
+      .filter-button.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: var(--white);
+      }
+      .project-count {
+        margin: -13px 0 22px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .project-detail-section {
+        display: none;
+        min-height: calc(100vh - 76px);
+        padding: 50px 0 90px;
+        background: var(--white);
+      }
+      body.route-project main > section:not(#project-detail),
+      body.route-project main > .stats {
+        display: none;
+      }
+      body.route-project .project-detail-section {
+        display: block;
+      }
+      .detail-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 30px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: start;
+        gap: 42px;
+      }
+      .detail-visual {
+        position: sticky;
+        top: 105px;
+        display: grid;
+        min-height: 340px;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 28px;
+      }
+      .detail-visual::before,
+      .detail-visual::after {
+        position: absolute;
+        border: 1px solid rgba(23, 36, 61, 0.1);
+        border-radius: 50%;
+        content: "";
+      }
+      .detail-visual::before {
+        width: 270px;
+        height: 270px;
+      }
+      .detail-visual::after {
+        width: 190px;
+        height: 190px;
+      }
+      .detail-icon {
+        position: relative;
+        z-index: 1;
+        font-size: 112px;
+        filter: drop-shadow(0 13px 12px rgba(35, 54, 35, 0.14));
+      }
+      .detail-copy h1 {
+        margin: 15px 0 12px;
+        font-size: clamp(34px, 5vw, 52px);
+        line-height: 1.04;
+        letter-spacing: -0.065em;
+      }
+      .detail-copy > p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .detail-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .detail-badge {
+        padding: 7px 11px;
+        border-radius: 999px;
+        background: #eaf1ff;
+        color: var(--green);
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .detail-panel {
+        margin-top: 26px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+      }
+      .detail-panel h2 {
+        margin: 0 0 14px;
+        font-size: 16px;
+        letter-spacing: -0.03em;
+      }
+      .materials-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        list-style: none;
+      }
+      .materials-list li {
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: #eff4fc;
+        color: #43536e;
+        font-size: 11px;
+      }
+      .guide-steps {
+        display: grid;
+        gap: 14px;
+        padding: 0;
+        list-style: none;
+        counter-reset: guide;
+      }
+      .guide-steps li {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        align-items: start;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+        counter-increment: guide;
+      }
+      .guide-steps li::before {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border-radius: 9px;
+        background: #eaf1ff;
+        color: var(--green);
+        content: counter(guide);
+        font-size: 11px;
+        font-weight: 850;
+      }
+      .detail-locked {
+        max-width: 600px;
+        margin: 75px auto;
+        padding: 40px;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: var(--paper);
+        text-align: center;
+      }
+      .detail-locked .lock-icon {
+        font-size: 42px;
+      }
+      .detail-locked h1 {
+        margin: 15px 0 10px;
+        font-size: clamp(28px, 5vw, 42px);
+        letter-spacing: -0.06em;
+      }
+      .detail-locked p {
+        margin: 0 auto 22px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .project-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 21px;
+        background: var(--white);
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+      .project-visual {
+        position: relative;
+        display: grid;
+        min-height: 180px;
+        overflow: hidden;
+        place-items: center;
+      }
+      .project-visual::before,
+      .project-visual::after {
+        position: absolute;
+        border: 1px solid rgba(23, 36, 61, 0.08);
+        border-radius: 50%;
+        content: "";
+      }
+      .project-visual::before {
+        width: 190px;
+        height: 190px;
+      }
+      .project-visual::after {
+        width: 130px;
+        height: 130px;
+      }
+      .project-icon {
+        position: relative;
+        z-index: 1;
+        font-size: 63px;
+        filter: drop-shadow(0 10px 8px rgba(35, 54, 90, 0.12));
+      }
+      .project-number {
+        position: absolute;
+        top: 16px;
+        left: 17px;
+        color: rgba(23, 35, 29, 0.55);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+      .project-info {
+        padding: 20px 20px 19px;
+      }
+      .project-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: #758078;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .project-info h3 {
+        margin: 12px 0 7px;
+        font-size: 19px;
+        letter-spacing: -0.04em;
+      }
+      .project-info p {
+        min-height: 42px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 17px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .about-section {
+        background: #eaf1fb;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        align-items: center;
+        gap: 85px;
+      }
+      .about-art {
+        position: relative;
+        display: grid;
+        min-height: 390px;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 32px;
+        background: #dce9fc;
+      }
+      .about-art::before {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border: 1px solid rgba(37, 99, 235, 0.23);
+        border-radius: 50%;
+        content: "";
+      }
+      .about-art::after {
+        position: absolute;
+        width: 215px;
+        height: 215px;
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        border-radius: 50%;
+        content: "";
+      }
+      .about-art span {
+        position: relative;
+        z-index: 1;
+        font-size: 114px;
+      }
+      .about-tag {
+        position: absolute;
+        z-index: 2;
+        right: 24px;
+        bottom: 22px;
+        padding: 12px 15px;
+        border-radius: 14px;
+        background: var(--white);
+        font-size: 12px;
+        font-weight: 750;
+        box-shadow: 0 8px 24px rgba(23, 36, 61, 0.08);
+      }
+      .about-copy h2 {
+        max-width: 530px;
+      }
+      .about-copy > p {
+        margin: 20px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .about-points {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 24px;
+        margin-top: 28px;
+      }
+      .about-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+      }
+      .point-icon {
+        display: grid;
+        flex: 0 0 34px;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--white);
+        color: var(--green);
+      }
+      .about-point b {
+        display: block;
+        margin: 2px 0 4px;
+        font-size: 12px;
+      }
+      .about-point small {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .subscribe-section {
+        padding: 94px 0;
+      }
+      .subscribe-box {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 0.85fr;
+        align-items: center;
+        gap: 40px;
+        overflow: hidden;
+        padding: 54px;
+        border-radius: 30px;
+        background: linear-gradient(125deg, #14284c, #1d3768);
+        color: var(--white);
+      }
+      .subscribe-box::after {
+        position: absolute;
+        top: -155px;
+        right: -75px;
+        width: 330px;
+        height: 330px;
+        border: 1px solid rgba(216, 243, 106, 0.15);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 45px rgba(216, 243, 106, 0.035),
+          0 0 0 90px rgba(216, 243, 106, 0.025);
+        content: "";
+      }
+      .subscribe-copy {
+        position: relative;
+        z-index: 1;
+      }
+      .subscribe-copy .eyebrow {
+        color: var(--lime);
+      }
+      .subscribe-copy h2 {
+        max-width: 490px;
+      }
+      .subscribe-copy p {
+        max-width: 470px;
+        margin: 17px 0 0;
+        color: #b7c3bb;
+        font-size: 13px;
+        line-height: 1.75;
+      }
+      .subscribe-form {
+        position: relative;
+        z-index: 1;
+        padding: 21px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 21px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .subscribe-form label,
+      .contact-form label {
+        display: block;
+        margin-bottom: 9px;
+        font-size: 11px;
+        font-weight: 750;
+      }
+      .input-row {
+        display: flex;
+        gap: 8px;
+      }
+      .subscribe-form input {
+        min-width: 0;
+        flex: 1;
+        min-height: 46px;
+        padding: 0 13px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        outline: 0;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        font-size: 12px;
+      }
+      .subscribe-form input::placeholder {
+        color: #9ba9a0;
+      }
+      .subscribe-form input:focus {
+        border-color: var(--lime);
+      }
+      .subscribe-form .button {
+        min-height: 46px;
+        padding-inline: 16px;
+        background: var(--lime);
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .subscribe-form .button:hover {
+        background: #b3edff;
+      }
+      .form-note {
+        min-height: 18px;
+        margin: 11px 0 0;
+        color: #bac6be;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .form-note.error {
+        color: #ffb3a0;
+      }
+      .form-note.success {
+        color: var(--lime);
+      }
+      .unlock-link {
+        display: none;
+        margin-top: 11px;
+        color: var(--lime);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .unlock-link.visible {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .footer {
+        padding: 57px 0 24px;
+        border-top: 1px solid var(--line);
+        background: #f0f2ec;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.75fr 1.2fr;
+        gap: 55px;
+        padding-bottom: 42px;
+      }
+      .footer-brand p {
+        max-width: 270px;
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .footer h3 {
+        margin: 4px 0 15px;
+        font-size: 12px;
+      }
+      .footer-links {
+        display: grid;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .footer-links a:hover {
+        color: var(--green);
+      }
+      .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .contact-form .full {
+        grid-column: 1 / -1;
+      }
+      .contact-form label {
+        margin-bottom: 6px;
+        color: #546158;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px 11px;
+        border: 1px solid #dfe4dc;
+        border-radius: 10px;
+        outline: 0;
+        background: var(--white);
+        font-size: 11px;
+      }
+      .contact-form textarea {
+        min-height: 76px;
+        resize: vertical;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: var(--green);
+      }
+      .contact-form .button {
+        min-height: 39px;
+        justify-self: start;
+        padding-inline: 15px;
+        font-size: 11px;
+      }
+      .contact-form .form-note {
+        grid-column: 1 / -1;
+        margin: 0;
+        color: var(--muted);
+      }
+      .contact-form .form-note.error {
+        color: #b73e2a;
+      }
+      .contact-form .form-note.success {
+        color: var(--green);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding-top: 20px;
+        border-top: 1px solid #dfe4dc;
+        color: #7d887f;
+        font-size: 10px;
+      }
+      .footer-bottom a {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .admin-entry {
+        color: #88948b;
+        font-size: 10px;
+      }
+      .admin-entry:hover {
+        color: var(--green);
+      }
+      .admin-section {
+        display: none;
+        min-height: calc(100vh - 76px);
+        padding: 56px 0 90px;
+        background: var(--paper);
+      }
+      body.route-admin main > section:not(#admin),
+      body.route-admin main > .stats {
+        display: none;
+      }
+      body.route-admin .admin-section {
+        display: block;
+      }
+      .admin-shell {
+        max-width: 850px;
+        margin: 0 auto;
+      }
+      .admin-panel {
+        margin-top: 24px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .admin-panel h2 {
+        margin: 0 0 18px;
+        font-size: 22px;
+        letter-spacing: -0.045em;
+      }
+      .admin-login-form,
+      .admin-project-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+      .admin-login-form {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 420px;
+      }
+      .admin-field {
+        min-width: 0;
+      }
+      .admin-field.full {
+        grid-column: 1 / -1;
+      }
+      .admin-field label {
+        display: block;
+        margin-bottom: 6px;
+        color: #546158;
+        font-size: 11px;
+        font-weight: 750;
+      }
+      .admin-field input,
+      .admin-field select,
+      .admin-field textarea {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 11px;
+        border: 1px solid #dfe4dc;
+        border-radius: 10px;
+        outline: 0;
+        background: var(--white);
+        color: var(--ink);
+        font-size: 12px;
+      }
+      .admin-field textarea {
+        min-height: 72px;
+        resize: vertical;
+      }
+      .admin-field input:focus,
+      .admin-field select:focus,
+      .admin-field textarea:focus {
+        border-color: var(--green);
+      }
+      .admin-project-form .check-field {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .admin-project-form .check-field input {
+        width: 17px;
+        min-height: 17px;
+        accent-color: var(--green);
+      }
+      .admin-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        grid-column: 1 / -1;
+      }
+      .admin-actions .button {
+        min-height: 41px;
+      }
+      .admin-tabs {
+        display: flex;
+        gap: 8px;
+        margin: 0 0 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .admin-tab {
+        padding: 10px 13px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 750;
+      }
+      .admin-tab.active {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .admin-records {
+        display: grid;
+        gap: 10px;
+      }
+      .admin-record {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+      }
+      .admin-record h3 {
+        margin: 0 0 4px;
+        font-size: 13px;
+      }
+      .admin-record p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+      }
+      .admin-record-actions {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 7px;
+      }
+      .admin-record-actions button {
+        padding: 7px 10px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: var(--white);
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 750;
+      }
+      .admin-record-actions button:hover {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .admin-record-actions button.danger:hover {
+        border-color: #c85443;
+        color: #b73e2a;
+      }
+      .admin-status {
+        min-height: 20px;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .admin-status.error {
+        color: #b73e2a;
+      }
+      .admin-status.success {
+        color: var(--green);
+      }
+      .admin-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+      .admin-toolbar h1 {
+        margin: 0;
+        font-size: 30px;
+        letter-spacing: -0.06em;
+      }
+
+      :focus-visible {
+        outline: 3px solid #4d87ee;
+        outline-offset: 3px;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+      }
+      @media (max-width: 900px) {
+        .nav-links {
+          gap: 17px;
+        }
+        .nav-links a {
+          font-size: 12px;
+        }
+        .hero {
+          padding-top: 58px;
+        }
+        .hero-grid {
+          gap: 25px;
+        }
+        .hero-art {
+          min-height: 380px;
+        }
+        .project-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .detail-layout {
+          gap: 25px;
+        }
+        .detail-visual {
+          min-height: 290px;
+        }
+        .about-grid {
+          gap: 45px;
+        }
+        .subscribe-box {
+          padding: 42px;
+        }
+        .footer-grid {
+          grid-template-columns: 0.8fr 0.65fr 1.2fr;
+          gap: 30px;
+        }
+      }
+      @media (max-width: 700px) {
+        .wrap {
+          width: min(100% - 34px, 540px);
+        }
+        .nav {
+          min-height: 66px;
+        }
+        .menu-toggle {
+          display: grid;
+          place-items: center;
+        }
+        .nav-actions {
+          gap: 9px;
+        }
+        .nav-links {
+          position: absolute;
+          top: 65px;
+          right: 17px;
+          left: 17px;
+          display: none;
+          align-items: stretch;
+          gap: 0;
+          padding: 8px;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          background: var(--white);
+          box-shadow: var(--shadow);
+        }
+        .nav-links.open {
+          display: grid;
+        }
+        .nav-links a {
+          padding: 12px;
+          border-radius: 10px;
+        }
+        .nav-links a:hover {
+          background: #edf3ff;
+        }
+        .hero {
+          padding: 48px 0 48px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+        .hero h1 {
+          max-width: 500px;
+          font-size: clamp(48px, 13vw, 70px);
+        }
+        .hero-copy > p {
+          font-size: 15px;
+        }
+        .hero-art {
+          min-height: 340px;
+          border-radius: 28px;
+        }
+        .plant-pot {
+          transform: scale(0.83);
+        }
+        .art-orbit {
+          width: 280px;
+          height: 280px;
+        }
+        .art-card.first {
+          top: 47px;
+          left: 10px;
+        }
+        .art-card.second {
+          right: 5px;
+          bottom: 38px;
+        }
+        .stats-grid {
+          padding: 19px 0;
+        }
+        .stat {
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          text-align: center;
+        }
+        .stat strong {
+          font-size: 20px;
+        }
+        .stat span {
+          max-width: 100px;
+          font-size: 10px;
+          line-height: 1.35;
+        }
+        section {
+          padding: 70px 0;
+        }
+        .section-head {
+          display: block;
+          margin-bottom: 27px;
+        }
+        .section-head > p {
+          margin-top: 13px;
+          font-size: 13px;
+        }
+        .project-grid {
+          gap: 12px;
+        }
+        .project-detail-section {
+          min-height: calc(100vh - 66px);
+          padding-top: 34px;
+        }
+        .detail-layout {
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+        .detail-visual {
+          position: relative;
+          top: auto;
+          min-height: 245px;
+        }
+        .detail-icon {
+          font-size: 92px;
+        }
+        .detail-copy h1 {
+          font-size: 38px;
+        }
+        .detail-panel {
+          padding: 18px;
+        }
+        .detail-locked {
+          margin: 40px auto;
+          padding: 30px 20px;
+        }
+        .admin-section {
+          min-height: calc(100vh - 66px);
+          padding: 35px 0 60px;
+        }
+        .admin-panel {
+          padding: 20px;
+        }
+        .admin-login-form,
+        .admin-project-form {
+          grid-template-columns: 1fr;
+        }
+        .admin-field.full,
+        .admin-actions {
+          grid-column: auto;
+        }
+        .admin-toolbar {
+          align-items: flex-start;
+        }
+        .admin-toolbar h1 {
+          font-size: 26px;
+        }
+        .admin-record {
+          align-items: flex-start;
+        }
+        .admin-record-actions {
+          flex-direction: column;
+        }
+        .project-visual {
+          min-height: 135px;
+        }
+        .project-icon {
+          font-size: 52px;
+        }
+        .project-info {
+          padding: 15px;
+        }
+        .project-info h3 {
+          font-size: 16px;
+        }
+        .project-info p {
+          min-height: 55px;
+          font-size: 11px;
+        }
+        .project-meta {
+          font-size: 8px;
+        }
+        .project-link {
+          font-size: 11px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 29px;
+        }
+        .about-art {
+          min-height: 290px;
+        }
+        .about-art span {
+          font-size: 95px;
+        }
+        .about-points {
+          gap: 17px 12px;
+        }
+        .subscribe-section {
+          padding: 64px 0;
+        }
+        .subscribe-box {
+          grid-template-columns: 1fr;
+          gap: 26px;
+          padding: 30px 23px;
+          border-radius: 24px;
+        }
+        .subscribe-box::after {
+          top: -120px;
+          right: -150px;
+        }
+        .subscribe-form {
+          padding: 17px;
+        }
+        .input-row {
+          flex-direction: column;
+        }
+        .subscribe-form .button {
+          width: 100%;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 29px 20px;
+        }
+        .footer-brand,
+        .footer-contact {
+          grid-column: 1 / -1;
+        }
+        .footer {
+          padding-top: 43px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+      @media (max-width: 390px) {
+        .wrap {
+          width: calc(100% - 28px);
+        }
+        .brand {
+          font-size: 16px;
+        }
+        .lang-btn {
+          padding-inline: 6px;
+        }
+        .hero h1 {
+          font-size: 47px;
+        }
+        .project-visual {
+          min-height: 118px;
+        }
+        .project-info {
+          padding: 12px;
+        }
+        .project-info h3 {
+          font-size: 14px;
+        }
+        .project-meta {
+          letter-spacing: 0.03em;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav wrap" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="STEM Park, home"
+          ><span class="brand-mark">✳</span><span>STEM Park</span></a
+        >
+        <div class="nav-links" id="nav-links">
+          <a href="#about" data-i18n="navAbout">О нас</a>
+          <a href="#projects" data-i18n="navProjects">Проекты</a>
+          <a
+            href="#subscribe"
+            data-i18n="navSubscribe"
+            data-subscription-ui
+            hidden
+            >Подписка</a
+          >
+          <a href="#contact" data-i18n="navContact">Контакты</a>
+        </div>
+        <div class="nav-actions">
+          <div class="languages" role="group" aria-label="Choose language">
+            <button
+              class="lang-btn active"
+              type="button"
+              data-lang="ru"
+              aria-pressed="true"
+            >
+              RU
+            </button>
+            <button
+              class="lang-btn"
+              type="button"
+              data-lang="kz"
+              aria-pressed="false"
+            >
+              KZ
+            </button>
+            <button
+              class="lang-btn"
+              type="button"
+              data-lang="en"
+              aria-pressed="false"
+            >
+              EN
+            </button>
+          </div>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            ☰
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow" data-i18n="heroEyebrow"
+              >Учись. Пробуй. Создавай.</span
+            >
+            <h1 data-i18n-html="heroTitle">
+              Большие идеи<br />начинаются <span>здесь.</span>
+            </h1>
+            <p data-i18n="heroText">
+              Место, где любопытство превращается в настоящие проекты. Исследуй,
+              экспериментируй и создавай будущее своими руками.
+            </p>
+            <div class="hero-buttons">
+              <a class="button" href="#projects"
+                ><span data-i18n="heroButton">Найти свой проект</span
+                ><span class="arrow" aria-hidden="true">↗</span></a
+              >
+              <a class="button secondary" href="#about" data-i18n="aboutButton"
+                >Узнать о нас</a
+              >
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-glow"></div>
+            <div class="art-orbit"></div>
+            <div class="art-sun"></div>
+            <span class="art-spark spark-one">✳</span
+            ><span class="art-spark spark-two">✦</span>
+            <div class="plant-pot"><span class="plant-emoji">🪴</span></div>
+            <div class="art-card first">
+              <span class="emoji">💡</span
+              ><span
+                ><b data-i18n="artIdea">Идея найдена</b
+                ><small data-i18n="artIdeaSub">Пора пробовать</small></span
+              >
+            </div>
+            <div class="art-card second">
+              <span class="emoji">🌱</span
+              ><span
+                ><b data-i18n="artGrow">Растём вместе</b
+                ><small data-i18n="artGrowSub">Шаг за шагом</small></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-section" id="projects">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow" data-i18n="projectsEyebrow"
+                >Мастерская идей</span
+              >
+              <h2 data-i18n="projectsTitle">Проекты для старта</h2>
+            </div>
+            <p data-i18n="projectsIntro">
+              Начни с коротких и понятных экспериментов. Каждый проект — повод
+              узнать что-то новое и сделать самому.
+            </p>
+          </div>
+          <div
+            class="project-filters"
+            id="project-filters"
+            role="group"
+            aria-label="Project categories"
+          ></div>
+          <p class="project-count" id="project-count" aria-live="polite"></p>
+          <div class="project-grid" id="project-grid" aria-live="polite"></div>
+        </div>
+      </section>
+      <section
+        class="project-detail-section"
+        id="project-detail"
+        aria-live="polite"
+      >
+        <div class="wrap" id="project-detail-content"></div>
+      </section>
+
+      <section class="admin-section" id="admin">
+        <div class="wrap admin-shell">
+          <a class="detail-back" href="#home" data-i18n="adminBack"
+            >← На главную</a
+          >
+          <div id="admin-login-view">
+            <span class="eyebrow" data-i18n="adminEyebrow">Закрытая зона</span>
+            <div class="admin-panel">
+              <h2 data-i18n="adminLoginTitle">Вход администратора</h2>
+              <form class="admin-login-form" id="admin-login-form">
+                <div class="admin-field">
+                  <label for="admin-password" data-i18n="adminPassword"
+                    >Пароль</label
+                  ><input
+                    id="admin-password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    maxlength="4"
+                    required
+                  />
+                </div>
+                <div class="admin-actions">
+                  <button
+                    class="button"
+                    type="submit"
+                    data-i18n="adminLoginButton"
+                  >
+                    Войти
+                  </button>
+                </div>
+              </form>
+              <p
+                class="admin-status"
+                id="admin-login-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </div>
+          </div>
+          <div id="admin-dashboard" hidden>
+            <div class="admin-toolbar">
+              <h1 data-i18n="adminDashboardTitle">Панель администратора</h1>
+              <button
+                class="button secondary"
+                id="admin-logout"
+                type="button"
+                data-i18n="adminLogout"
+              >
+                Выйти
+              </button>
+            </div>
+            <div class="admin-panel">
+              <div class="admin-tabs" role="tablist">
+                <button
+                  class="admin-tab active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  data-admin-tab="projects"
+                  data-i18n="adminProjectsTab"
+                >
+                  Проекты
+                </button>
+                <button
+                  class="admin-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  data-admin-tab="subscriptions"
+                  data-i18n="adminSubscriptionsTab"
+                >
+                  Подписки
+                </button>
+              </div>
+              <div id="admin-projects-view">
+                <h2 data-i18n="adminProjectFormTitle">Добавить проект</h2>
+                <form class="admin-project-form" id="admin-project-form">
+                  <div class="admin-field">
+                    <label for="project-id" data-i18n="adminProjectId"
+                      >ID (латиницей)</label
+                    ><input
+                      id="project-id"
+                      name="id"
+                      pattern="[a-z0-9-]+"
+                      required
+                    />
+                  </div>
+                  <div class="admin-field">
+                    <label
+                      for="project-category"
+                      data-i18n="adminProjectCategory"
+                      >Категория</label
+                    ><select id="project-category" name="category">
+                      <option value="nature" data-i18n="categoryNature">
+                        Природа
+                      </option>
+                      <option
+                        value="engineering"
+                        data-i18n="categoryEngineering"
+                      >
+                        Инженерия
+                      </option>
+                      <option value="science" data-i18n="categoryScience">
+                        Наука
+                      </option>
+                      <option value="technology" data-i18n="categoryTechnology">
+                        Технологии
+                      </option>
+                      <option value="art" data-i18n="categoryArt">
+                        Творчество
+                      </option>
+                      <option value="space" data-i18n="categorySpace">
+                        Космос
+                      </option>
+                      <option value="design" data-i18n="categoryDesign">
+                        Дизайн
+                      </option>
+                      <option value="robotics" data-i18n="categoryRobotics">
+                        Робототехника
+                      </option>
+                    </select>
+                  </div>
+                  <div class="admin-field">
+                    <label for="project-level" data-i18n="adminProjectLevel"
+                      >Уровень</label
+                    ><select id="project-level" name="level">
+                      <option value="beginner" data-i18n="levelBeginner">
+                        Начальный
+                      </option>
+                      <option
+                        value="intermediate"
+                        data-i18n="levelIntermediate"
+                      >
+                        Средний
+                      </option>
+                      <option value="advanced" data-i18n="levelAdvanced">
+                        Продвинутый
+                      </option>
+                    </select>
+                  </div>
+                  <div class="admin-field">
+                    <label for="project-icon" data-i18n="adminProjectIcon"
+                      >Иконка (emoji)</label
+                    ><input
+                      id="project-icon"
+                      name="icon"
+                      maxlength="8"
+                      value="💡"
+                      required
+                    />
+                  </div>
+                  <div class="admin-field">
+                    <label for="project-color" data-i18n="adminProjectColor"
+                      >Цвет карточки</label
+                    ><input
+                      id="project-color"
+                      name="color"
+                      type="color"
+                      value="#e2edff"
+                      required
+                    />
+                  </div>
+                  <label class="check-field"
+                    ><input name="free" type="checkbox" /><span
+                      data-i18n="adminProjectFree"
+                      >Бесплатный проект</span
+                    ></label
+                  >
+                  <div class="admin-field">
+                    <label for="project-title-ru" data-i18n="adminTitleRu"
+                      >Название (RU)</label
+                    ><input id="project-title-ru" name="titleRu" required />
+                  </div>
+                  <div class="admin-field">
+                    <label for="project-title-kz" data-i18n="adminTitleKz"
+                      >Название (KZ)</label
+                    ><input id="project-title-kz" name="titleKz" required />
+                  </div>
+                  <div class="admin-field">
+                    <label for="project-title-en" data-i18n="adminTitleEn"
+                      >Название (EN)</label
+                    ><input id="project-title-en" name="titleEn" required />
+                  </div>
+                  <div class="admin-field full">
+                    <label
+                      for="project-description-ru"
+                      data-i18n="adminDescriptionRu"
+                      >Описание (RU)</label
+                    ><textarea
+                      id="project-description-ru"
+                      name="descriptionRu"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="admin-field full">
+                    <label
+                      for="project-description-kz"
+                      data-i18n="adminDescriptionKz"
+                      >Описание (KZ)</label
+                    ><textarea
+                      id="project-description-kz"
+                      name="descriptionKz"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="admin-field full">
+                    <label
+                      for="project-description-en"
+                      data-i18n="adminDescriptionEn"
+                      >Описание (EN)</label
+                    ><textarea
+                      id="project-description-en"
+                      name="descriptionEn"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="admin-actions">
+                    <button
+                      class="button"
+                      type="submit"
+                      id="admin-project-save"
+                      data-i18n="adminProjectSave"
+                    >
+                      Сохранить проект</button
+                    ><button
+                      class="button secondary"
+                      type="button"
+                      id="admin-project-cancel"
+                      hidden
+                      data-i18n="adminProjectCancel"
+                    >
+                      Отмена
+                    </button>
+                  </div>
+                </form>
+                <p
+                  class="admin-status"
+                  id="admin-project-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+                <h2 data-i18n="adminProjectsList">Проекты</h2>
+                <div class="admin-records" id="admin-project-records"></div>
+              </div>
+              <div id="admin-subscriptions-view" hidden>
+                <h2 data-i18n="adminSubscriptionsTitle">Заявки и подписки</h2>
+                <div
+                  class="admin-records"
+                  id="admin-subscription-records"
+                ></div>
+                <p
+                  class="admin-status"
+                  id="admin-subscription-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="wrap about-grid">
+          <div class="about-art" aria-hidden="true">
+            <span>🧩</span>
+            <div class="about-tag" data-i18n="aboutTag">
+              Место для твоей идеи
+            </div>
+          </div>
+          <div class="about-copy">
+            <span class="eyebrow" data-i18n="aboutEyebrow"
+              >Что такое STEM Park?</span
+            >
+            <h2 data-i18n="aboutTitle">Не просто читать. Пробовать.</h2>
+            <p data-i18n="aboutText">
+              STEM Park — это онлайн-пространство для тех, кто хочет понять, как
+              устроен мир. Мы собираем идеи и практические проекты на стыке
+              науки, технологий, инженерии, искусства и математики — чтобы
+              учиться было интересно и по-настоящему.
+            </p>
+            <div class="about-points">
+              <div class="about-point">
+                <span class="point-icon">✦</span
+                ><span
+                  ><b data-i18n="point1Title">Понятно с первого шага</b
+                  ><small data-i18n="point1Text"
+                    >Простые объяснения и ясные инструкции.</small
+                  ></span
+                >
+              </div>
+              <div class="about-point">
+                <span class="point-icon">⌁</span
+                ><span
+                  ><b data-i18n="point2Title">Учёба через практику</b
+                  ><small data-i18n="point2Text"
+                    >Проверяй идеи и создавай результат.</small
+                  ></span
+                >
+              </div>
+              <div class="about-point">
+                <span class="point-icon">♡</span
+                ><span
+                  ><b data-i18n="point3Title">Для каждого</b
+                  ><small data-i18n="point3Text"
+                    >Начинай с того, что интересно именно тебе.</small
+                  ></span
+                >
+              </div>
+              <div class="about-point">
+                <span class="point-icon">↗</span
+                ><span
+                  ><b data-i18n="point4Title">Можно расти дальше</b
+                  ><small data-i18n="point4Text"
+                    >Новые темы и проекты пополняют коллекцию.</small
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="subscribe-section"
+        id="subscribe"
+        data-subscription-ui
+        hidden
+      >
+        <div class="wrap subscribe-box">
+          <div class="subscribe-copy">
+            <span class="eyebrow" data-i18n="subscribeEyebrow"
+              >Следующий уровень</span
+            >
+            <h2 data-i18n="subscribeTitle">
+              Больше идей — больше возможностей.
+            </h2>
+            <p data-i18n="subscribeText">
+              Оставь почту, чтобы открыть дополнительные проекты и получать
+              новости о новых материалах. Подписка бесплатная.
+            </p>
+          </div>
+          <form class="subscribe-form" id="subscribe-form">
+            <label for="subscriber-email" data-i18n="emailLabel"
+              >Твоя электронная почта</label
+            >
+            <div class="input-row">
+              <input
+                id="subscriber-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="name@example.com"
+                required
+              />
+              <button class="button" type="submit">
+                <span data-i18n="subscribeButton">Открыть проекты</span
+                ><span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p
+              class="form-note"
+              id="subscribe-status"
+              role="status"
+              aria-live="polite"
+              data-i18n="subscribeFineprint"
+            >
+              Нажимая кнопку, ты соглашаешься получать новости STEM Park.
+            </p>
+            <a
+              class="unlock-link"
+              id="unlock-link"
+              href="#projects"
+              data-i18n="unlockLink"
+              >Смотреть дополнительные проекты →</a
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#home"
+              ><span class="brand-mark">✳</span><span>STEM Park</span></a
+            >
+            <p data-i18n="footerText">
+              Пространство, где любопытство становится действием, а идеи —
+              настоящими проектами.
+            </p>
+          </div>
+          <div>
+            <h3 data-i18n="footerExplore">Исследуй</h3>
+            <div class="footer-links">
+              <a href="#about" data-i18n="navAbout">О нас</a>
+              <a href="#projects" data-i18n="navProjects">Проекты</a>
+              <a
+                href="#subscribe"
+                data-i18n="navSubscribe"
+                data-subscription-ui
+                hidden
+                >Подписка</a
+              >
+            </div>
+          </div>
+          <div class="footer-contact">
+            <h3 data-i18n="contactTitle">Есть идея или вопрос?</h3>
+            <form class="contact-form" id="contact-form">
+              <div>
+                <label for="contact-name" data-i18n="contactName">Имя</label
+                ><input
+                  id="contact-name"
+                  name="name"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+              <div>
+                <label for="contact-email" data-i18n="contactEmail">Почта</label
+                ><input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <div class="full">
+                <label for="contact-message" data-i18n="contactMessage"
+                  >Сообщение</label
+                ><textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                ></textarea>
+              </div>
+              <button class="button" type="submit" data-i18n="contactSend">
+                Отправить сообщение
+              </button>
+              <p
+                class="form-note"
+                id="contact-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© <span id="year"></span> STEM Park.
+            <span data-i18n="copyright">Создавай с любопытством.</span></span
+          ><span data-i18n-html="authors"
+            >Создатели: <a href="#contact">команда STEM Park</a></span
+          ><a class="admin-entry" href="#admin" data-i18n="adminEntry"
+            >Вход для администратора</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Add projects to this list; use translations for every supported language.
+      const projects = [
+        {
+          id: "sunny-garden",
+          icon: "🌱",
+          color: "#e2edff",
+          category: "nature",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Солнечный сад",
+            kz: "Күн сәулелі бақ",
+            en: "Sunny garden",
+          },
+          description: {
+            ru: "Узнай, как свет помогает растениям расти, и создай свой мини-сад.",
+            kz: "Жарықтың өсімдіктерге қалай көмектесетінін біліп, шағын бақшаңды жаса.",
+            en: "Find out how light helps plants grow and create your own mini garden.",
+          },
+        },
+        {
+          id: "paper-bridge",
+          icon: "🌉",
+          color: "#e2f1ff",
+          category: "engineering",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Мост из бумаги",
+            kz: "Қағаз көпір",
+            en: "Paper bridge",
+          },
+          description: {
+            ru: "Проверь, какая форма конструкции выдержит самый большой груз.",
+            kz: "Қай құрылым пішіні ең үлкен жүкті көтеретінін тексер.",
+            en: "Test which structure shape can carry the biggest load.",
+          },
+        },
+        {
+          id: "rain-cloud",
+          icon: "🌧️",
+          color: "#e5e9ff",
+          category: "science",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Облако с дождём",
+            kz: "Жаңбырлы бұлт",
+            en: "A cloud that rains",
+          },
+          description: {
+            ru: "Собери домашнюю модель облака и посмотри, как начинается дождь.",
+            kz: "Үйде бұлттың үлгісін жасап, жаңбырдың қалай жауатынын көр.",
+            en: "Build a cloud model at home and see how rain begins.",
+          },
+        },
+        {
+          id: "secret-code",
+          icon: "🔐",
+          color: "#e7edff",
+          category: "technology",
+          level: "beginner",
+          free: true,
+          title: { ru: "Секретный шифр", kz: "Құпия шифр", en: "Secret code" },
+          description: {
+            ru: "Зашифруй послание с помощью простого кода и стань криптографом.",
+            kz: "Қарапайым кодпен хабарламаңды шифрлап, криптограф болып көр.",
+            en: "Encrypt a message with a simple code and become a cryptographer.",
+          },
+        },
+        {
+          id: "color-lab",
+          icon: "🎨",
+          color: "#e9eaff",
+          category: "art",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Лаборатория цвета",
+            kz: "Түстер зертханасы",
+            en: "Colour lab",
+          },
+          description: {
+            ru: "Смешивай цвета, наблюдай за светом и находи неожиданные оттенки.",
+            kz: "Түстерді араластырып, жарықты бақыла және жаңа реңктерді тап.",
+            en: "Mix colours, observe light and discover surprising new shades.",
+          },
+        },
+        {
+          id: "wind-power",
+          icon: "🌬️",
+          color: "#dff2ff",
+          category: "engineering",
+          level: "intermediate",
+          free: true,
+          title: { ru: "Сила ветра", kz: "Жел қуаты", en: "Wind power" },
+          description: {
+            ru: "Сделай бумажную турбину и выясни, как ветер превращается в энергию.",
+            kz: "Қағаз турбина жасап, желдің энергияға қалай айналатынын біл.",
+            en: "Make a paper turbine and learn how wind turns into energy.",
+          },
+        },
+        {
+          id: "smart-greenhouse",
+          icon: "🌿",
+          color: "#e0f1ff",
+          category: "technology",
+          level: "intermediate",
+          free: false,
+          title: {
+            ru: "Умная теплица",
+            kz: "Ақылды жылыжай",
+            en: "Smart greenhouse",
+          },
+          description: {
+            ru: "Спроектируй теплицу, которая сама следит за условиями для растений.",
+            kz: "Өсімдіктерге қолайлы жағдайды бақылайтын жылыжай жобала.",
+            en: "Design a greenhouse that monitors the conditions plants need.",
+          },
+        },
+        {
+          id: "moon-rover",
+          icon: "🚀",
+          color: "#e6ebfa",
+          category: "space",
+          level: "intermediate",
+          free: false,
+          title: {
+            ru: "Луноход на миссии",
+            kz: "Айдағы ровер",
+            en: "Moon rover mission",
+          },
+          description: {
+            ru: "Спланируй маршрут ровера и реши задачи настоящего космического инженера.",
+            kz: "Ровердің бағытын жоспарлап, ғарыш инженері сияқты есептерді шеш.",
+            en: "Plan a rover route and solve problems like a real space engineer.",
+          },
+        },
+        {
+          id: "eco-city",
+          icon: "🏙️",
+          color: "#e5efff",
+          category: "design",
+          level: "advanced",
+          free: false,
+          title: {
+            ru: "Город будущего",
+            kz: "Болашақ қаласы",
+            en: "City of the future",
+          },
+          description: {
+            ru: "Создай экологичный город, в котором удобно жить людям и природе.",
+            kz: "Адамдарға да, табиғатқа да қолайлы экологиялық қала жаса.",
+            en: "Create an eco-friendly city that works for people and nature.",
+          },
+        },
+        {
+          id: "music-machine",
+          icon: "🎼",
+          color: "#eeeaff",
+          category: "technology",
+          level: "intermediate",
+          free: false,
+          title: {
+            ru: "Музыкальная машина",
+            kz: "Музыкалық құрылғы",
+            en: "Music machine",
+          },
+          description: {
+            ru: "Собери необычный инструмент и исследуй, откуда берётся звук.",
+            kz: "Ерекше аспап құрастырып, дыбыстың қалай пайда болатынын зертте.",
+            en: "Build an unusual instrument and explore where sound comes from.",
+          },
+        },
+        {
+          id: "water-filter",
+          icon: "💧",
+          color: "#dff3ff",
+          category: "science",
+          level: "intermediate",
+          free: false,
+          title: { ru: "Чистая вода", kz: "Таза су", en: "Clean water" },
+          description: {
+            ru: "Собери модель фильтра и сравни, какие материалы лучше очищают воду.",
+            kz: "Сүзгі үлгісін жасап, суды қай материал жақсы тазалайтынын салыстыр.",
+            en: "Build a filter model and compare how materials clean water.",
+          },
+        },
+        {
+          id: "robot-helper",
+          icon: "🤖",
+          color: "#e8efff",
+          category: "robotics",
+          level: "advanced",
+          free: false,
+          title: {
+            ru: "Робот-помощник",
+            kz: "Көмекші робот",
+            en: "Robot helper",
+          },
+          description: {
+            ru: "Продумай алгоритм и собери робота для полезного дела дома или в школе.",
+            kz: "Алгоритм құрып, үйде не мектепте көмектесетін робот жаса.",
+            en: "Plan an algorithm and build a robot for a helpful task at home or school.",
+          },
+        },
+        {
+          id: "rainbow-glass",
+          icon: "🌈",
+          color: "#e5e9ff",
+          category: "science",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Радуга в стакане",
+            kz: "Стақандағы кемпірқосақ",
+            en: "Rainbow in a glass",
+          },
+          description: {
+            ru: "Исследуй плотность жидкостей и собери цветные слои в стакане.",
+            kz: "Сұйықтықтардың тығыздығын зерттеп, стақанда түрлі түсті қабаттар жаса.",
+            en: "Explore liquid density and create colourful layers in a glass.",
+          },
+        },
+        {
+          id: "marble-maze",
+          icon: "🌀",
+          color: "#e2f1ff",
+          category: "design",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Лабиринт для шарика",
+            kz: "Шарикке арналған лабиринт",
+            en: "Marble maze",
+          },
+          description: {
+            ru: "Спроектируй картонный лабиринт и проверь его на точность и удобство.",
+            kz: "Картон лабиринтін жобалап, оның дәлдігі мен ыңғайлылығын тексер.",
+            en: "Design a cardboard maze and test its precision and usability.",
+          },
+        },
+        {
+          id: "shadow-theater",
+          icon: "🎭",
+          color: "#eeeaff",
+          category: "art",
+          level: "beginner",
+          free: true,
+          title: {
+            ru: "Театр теней",
+            kz: "Көлеңке театры",
+            en: "Shadow theatre",
+          },
+          description: {
+            ru: "Создай фигурки и поставь короткую историю с помощью света и теней.",
+            kz: "Фигуралар жасап, жарық пен көлеңкені пайдаланып шағын оқиға көрсет.",
+            en: "Make puppets and tell a short story with light and shadows.",
+          },
+        },
+        {
+          id: "paper-waterwheel",
+          icon: "⚙️",
+          color: "#dff3ff",
+          category: "engineering",
+          level: "intermediate",
+          free: true,
+          title: {
+            ru: "Водяное колесо",
+            kz: "Су дөңгелегі",
+            en: "Water wheel",
+          },
+          description: {
+            ru: "Собери простую модель колеса и выясни, как поток воды приводит её в движение.",
+            kz: "Дөңгелектің қарапайым үлгісін жасап, су ағынының оны қалай қозғайтынын біл.",
+            en: "Build a simple wheel model and see how flowing water sets it in motion.",
+          },
+        },
+      ];
+
+      const translations = {
+        ru: {
+          navAbout: "О нас",
+          navProjects: "Проекты",
+          navSubscribe: "Подписка",
+          navContact: "Контакты",
+          heroEyebrow: "Учись. Пробуй. Создавай.",
+          heroTitle: "Большие идеи<br>начинаются <span>здесь.</span>",
+          heroText:
+            "Место, где любопытство превращается в настоящие проекты. Исследуй, экспериментируй и создавай будущее своими руками.",
+          heroButton: "Найти свой проект",
+          aboutButton: "Узнать о нас",
+          heroNote:
+            "<strong>Для любознательных</strong> — от первых идей до прототипов",
+          artIdea: "Идея найдена",
+          artIdeaSub: "Пора пробовать",
+          artGrow: "Растём вместе",
+          artGrowSub: "Шаг за шагом",
+          statProjects: "открытых проектов",
+          statLanguages: "языка обучения",
+          statIdeas: "идей для открытий",
+          projectsEyebrow: "Мастерская идей",
+          projectsTitle: "Проекты для старта",
+          projectsIntro:
+            "Начни с коротких и понятных экспериментов. Каждый проект — повод узнать что-то новое и сделать самому.",
+          aboutTag: "Место для твоей идеи",
+          aboutEyebrow: "Что такое STEM Park?",
+          aboutTitle: "Не просто читать. Пробовать.",
+          aboutText:
+            "STEM Park — это онлайн-пространство для тех, кто хочет понять, как устроен мир. Мы собираем идеи и практические проекты на стыке науки, технологий, инженерии, искусства и математики — чтобы учиться было интересно и по-настоящему.",
+          point1Title: "Понятно с первого шага",
+          point1Text: "Простые объяснения и ясные инструкции.",
+          point2Title: "Учёба через практику",
+          point2Text: "Проверяй идеи и создавай результат.",
+          point3Title: "Для каждого",
+          point3Text: "Начинай с того, что интересно именно тебе.",
+          point4Title: "Можно расти дальше",
+          point4Text: "Новые темы и проекты пополняют коллекцию.",
+          subscribeEyebrow: "Следующий уровень",
+          subscribeTitle: "Больше идей — больше возможностей.",
+          subscribeText:
+            "Оставь почту, чтобы перейти к оплате и после подтверждения платежа открыть дополнительные проекты.",
+          emailLabel: "Твоя электронная почта",
+          subscribeButton: "Перейти к оплате",
+          subscribeFineprint:
+            "Доступ к проектам откроется после подтверждения оплаты сервером.",
+          unlockLink: "Смотреть дополнительные проекты →",
+          subscribeLoading: "Создаём заказ на оплату…",
+          subscribeReady:
+            "Подписка подтверждена сервером. Дополнительные проекты открыты.",
+          subscribeSent: "Заказ создан. Переходим к оплате…",
+          notifyNotConfigured:
+            "Сервер оплаты пока не подключён. Бесплатные проекты остаются доступны.",
+          subscribeError:
+            "Не удалось создать заказ. Проверьте подключение сервера и попробуйте снова.",
+          checkoutServerError:
+            "Сервер оплаты пока недоступен. Проверьте подключение API и попробуйте позже.",
+          paymentPending:
+            "Платёж пока не подтверждён. Доступ откроется после подтверждения Kaspi.",
+          paymentCancelled:
+            "Оплата отменена. Бесплатные проекты доступны без изменений.",
+          paymentChecking: "Проверяем статус платежа…",
+          paymentNotificationError:
+            "Заказ создан, но не удалось отправить уведомление. Проверьте Formspree.",
+          footerText:
+            "Пространство, где любопытство становится действием, а идеи — настоящими проектами.",
+          footerExplore: "Исследуй",
+          contactTitle: "Есть идея или вопрос?",
+          contactName: "Имя",
+          contactEmail: "Почта",
+          contactMessage: "Сообщение",
+          contactSend: "Отправить сообщение",
+          contactLoading: "Отправляем сообщение…",
+          contactSent: "Спасибо! Сообщение отправлено.",
+          contactNotConfigured:
+            "Форма пока не настроена: укажите Formspree endpoint в коде.",
+          contactError:
+            "Не удалось отправить сообщение. Проверьте Formspree endpoint и попробуйте снова.",
+          copyright: "Создавай с любопытством.",
+          authors: 'Создатели: <a href="#contact">команда STEM Park</a>',
+          filterAll: "Все проекты",
+          projectsCount: "проектов доступно",
+          noProjects: "В этой категории пока нет проектов.",
+          detailBack: "← Назад к проектам",
+          detailEyebrow: "Практический проект",
+          materialsTitle: "Что понадобится",
+          stepsTitle: "Как приступить",
+          stepOne: "Изучи задачу и запиши, какой результат ты ожидаешь.",
+          stepTwo:
+            "Собери модель или проведи эксперимент, используя эти материалы.",
+          stepThree:
+            "Запиши наблюдения, сравни результат с ожиданием и попробуй улучшить проект.",
+          detailButton: "Вернуться к проектам",
+          materialSeed: "семена",
+          materialCup: "прозрачный стакан",
+          materialSoil: "вата или грунт",
+          materialWater: "вода",
+          materialPaper: "бумага",
+          materialScissors: "ножницы",
+          materialTape: "клейкая лента",
+          materialRuler: "линейка",
+          materialJar: "прозрачная банка",
+          materialSpoon: "ложка",
+          materialNotebook: "тетрадь",
+          materialPencil: "карандаш",
+          materialCode: "лист для шифра",
+          materialColors: "цветные карандаши",
+          materialCardboard: "картон",
+          materialTorch: "фонарик",
+          materialBall: "маленький мяч",
+          materialRecycled: "материалы для макета",
+          materialRubber: "резинки",
+          materialBox: "пустая коробка",
+          materialStraw: "трубочка",
+          materialPin: "булавка",
+          materialGravel: "гравий или песок",
+          materialFilter: "бумажный фильтр",
+          materialString: "нитка",
+          materialTapeMeasure: "рулетка",
+          lockProjectTitle: "Проект доступен по подписке",
+          lockedTitle: "Дополнительный проект",
+          lockedDescription:
+            "Подпишись бесплатно, чтобы открыть этот проект и всю дополнительную коллекцию.",
+          subscriptionPaused:
+            "Дополнительные проекты пока закрыты. Мы откроем их позже.",
+          lockedButton: "Открыть доступ",
+          categoryNature: "Природа",
+          categoryEngineering: "Инженерия",
+          categoryScience: "Наука",
+          categoryTechnology: "Технологии",
+          categoryArt: "Творчество",
+          categorySpace: "Космос",
+          categoryDesign: "Дизайн",
+          categoryRobotics: "Робототехника",
+          levelBeginner: "Начальный",
+          levelIntermediate: "Средний",
+          levelAdvanced: "Продвинутый",
+          freeLabel: "Бесплатно",
+          premiumLabel: "Для подписчиков",
+          projectAction: "Смотреть проект",
+          lockedAction: "Открыть по подписке",
+          adminEntry: "Вход для администратора",
+          adminBack: "← На главную",
+          adminEyebrow: "Закрытая зона",
+          adminLoginTitle: "Вход администратора",
+          adminEmail: "Электронная почта",
+          adminPassword: "Пароль",
+          adminLoginButton: "Войти",
+          adminDashboardTitle: "Панель администратора",
+          adminLogout: "Выйти",
+          adminProjectsTab: "Проекты",
+          adminSubscriptionsTab: "Подписки",
+          adminProjectFormTitle: "Добавить проект",
+          adminProjectId: "ID (латиницей)",
+          adminProjectCategory: "Категория",
+          adminProjectLevel: "Уровень",
+          adminProjectIcon: "Иконка (emoji)",
+          adminProjectColor: "Цвет карточки",
+          adminProjectFree: "Бесплатный проект",
+          adminTitleRu: "Название (RU)",
+          adminTitleKz: "Название (KZ)",
+          adminTitleEn: "Название (EN)",
+          adminDescriptionRu: "Описание (RU)",
+          adminDescriptionKz: "Описание (KZ)",
+          adminDescriptionEn: "Описание (EN)",
+          adminProjectSave: "Сохранить проект",
+          adminProjectCancel: "Отмена",
+          adminProjectsList: "Проекты",
+          adminSubscriptionsTitle: "Заявки и подписки",
+          adminEdit: "Изменить",
+          adminDelete: "Удалить",
+          adminActive: "Активна",
+          adminInactive: "Не активна",
+          adminEmpty: "Пока нет записей.",
+          adminLoginError: "Не удалось войти. Проверьте данные.",
+          adminApiError: "Не удалось загрузить данные. Проверьте сервер.",
+          adminSaving: "Сохраняем…",
+          adminSaved: "Изменения сохранены.",
+          adminSaveError: "Не удалось сохранить изменения.",
+          adminDeleteConfirm: "Удалить этот проект?",
+          adminSessionEnded: "Сессия завершена. Войдите снова.",
+        },
+        kz: {
+          navAbout: "Біз туралы",
+          navProjects: "Жобалар",
+          navSubscribe: "Жазылым",
+          navContact: "Байланыс",
+          heroEyebrow: "Үйрен. Байқап көр. Жаса.",
+          heroTitle: "Үлкен идеялар<br><span>осы жерден</span> басталады.",
+          heroText:
+            "Қызығушылық нақты жобаларға айналатын кеңістік. Зертте, тәжірибе жаса және болашақты өз қолыңмен құр.",
+          heroButton: "Жоба таңдау",
+          aboutButton: "Біз туралы",
+          heroNote:
+            "<strong>Ізденімпаз жандарға</strong> — алғашқы идеядан прототипке дейін",
+          artIdea: "Идея табылды",
+          artIdeaSub: "Байқап көретін кез",
+          artGrow: "Бірге өсеміз",
+          artGrowSub: "Бір қадамнан",
+          statProjects: "ашық жоба",
+          statLanguages: "оқу тілі",
+          statIdeas: "жаңа идея",
+          projectsEyebrow: "Идеялар шеберханасы",
+          projectsTitle: "Алғашқы жобалар",
+          projectsIntro:
+            "Қысқа әрі түсінікті тәжірибелерден баста. Әр жоба — жаңа нәрсе үйреніп, өз қолыңмен жасап көруге мүмкіндік.",
+          aboutTag: "Идеяңа арналған орын",
+          aboutEyebrow: "STEM Park деген не?",
+          aboutTitle: "Тек оқып қоймай, жасап көр.",
+          aboutText:
+            "STEM Park — әлемнің қалай жұмыс істейтінін түсінгісі келетіндерге арналған онлайн кеңістік. Біз ғылым, технология, инженерия, өнер және математика тоғысындағы идеялар мен тәжірибелік жобаларды жинаймыз. Оқу қызықты әрі пайдалы болсын!",
+          point1Title: "Бірінші қадамнан түсінікті",
+          point1Text: "Қарапайым түсіндірмелер мен анық нұсқаулар.",
+          point2Title: "Тәжірибе арқылы үйрену",
+          point2Text: "Идеяларды тексеріп, нәтиже жаса.",
+          point3Title: "Барлығына арналған",
+          point3Text: "Өзіңе қызық тақырыптан баста.",
+          point4Title: "Әрі қарай дами бер",
+          point4Text: "Жаңа тақырыптар мен жобалар қосылып отырады.",
+          subscribeEyebrow: "Келесі деңгей",
+          subscribeTitle: "Идея көп болса — мүмкіндік те көп.",
+          subscribeText:
+            "Төлемге өту үшін поштаңды енгіз. Қосымша жобалар төлем серверде расталғаннан кейін ашылады.",
+          emailLabel: "Электрондық поштаң",
+          subscribeButton: "Төлемге өту",
+          subscribeFineprint:
+            "Жобаларға қолжетімділік төлем серверде расталғаннан кейін ашылады.",
+          unlockLink: "Қосымша жобаларды көру →",
+          subscribeLoading: "Төлем тапсырысы жасалуда…",
+          subscribeReady: "Жазылым серверде расталды. Қосымша жобалар ашық.",
+          subscribeSent: "Тапсырыс жасалды. Төлемге өтудеміз…",
+          notifyNotConfigured:
+            "Төлем сервері әлі қосылмаған. Тегін жобалар қолжетімді.",
+          subscribeError:
+            "Тапсырыс жасау мүмкін болмады. Сервер байланысын тексеріп, қайталап көр.",
+          checkoutServerError:
+            "Төлем сервері әзірге қолжетімсіз. API байланысын тексеріп, кейінірек қайталап көр.",
+          paymentPending:
+            "Төлем әлі расталмады. Kaspi растағаннан кейін қолжетімділік ашылады.",
+          paymentCancelled:
+            "Төлем тоқтатылды. Тегін жобалар бұрынғыдай қолжетімді.",
+          paymentChecking: "Төлем күйі тексерілуде…",
+          paymentNotificationError:
+            "Тапсырыс жасалды, бірақ хабарлама жіберілмеді. Formspree баптауын тексер.",
+          footerText:
+            "Қызығушылық әрекетке, ал идеялар нақты жобаларға айналатын кеңістік.",
+          footerExplore: "Зерттеу",
+          contactTitle: "Идеяң не сұрағың бар ма?",
+          contactName: "Атың",
+          contactEmail: "Пошта",
+          contactMessage: "Хабарлама",
+          contactSend: "Хабарлама жіберу",
+          contactLoading: "Хабарлама жіберілуде…",
+          contactSent: "Рақмет! Хабарлама жіберілді.",
+          contactNotConfigured:
+            "Пішін әлі бапталмаған: кодқа Formspree endpoint мәнін енгіз.",
+          contactError:
+            "Хабарлама жіберілмеді. Formspree endpoint мәнін тексеріп, қайта көр.",
+          copyright: "Қызығушылықпен жаса.",
+          authors: 'Жасаушылар: <a href="#contact">STEM Park командасы</a>',
+          filterAll: "Барлық жоба",
+          projectsCount: "жоба қолжетімді",
+          noProjects: "Бұл санатта әзірге жоба жоқ.",
+          detailBack: "← Жобаларға оралу",
+          detailEyebrow: "Тәжірибелік жоба",
+          materialsTitle: "Қажетті материалдар",
+          stepsTitle: "Жұмысты бастау",
+          stepOne: "Тапсырманы зерттеп, қандай нәтиже күтетіндігіңді жаз.",
+          stepTwo:
+            "Осы материалдарды пайдаланып үлгі құрастыр немесе тәжірибе жаса.",
+          stepThree:
+            "Бақылауыңды жазып, нәтижені болжамыңмен салыстыр да жобаны жақсарт.",
+          detailButton: "Жобаларға оралу",
+          materialSeed: "тұқым",
+          materialCup: "мөлдір стақан",
+          materialSoil: "мақта немесе топырақ",
+          materialWater: "су",
+          materialPaper: "қағаз",
+          materialScissors: "қайшы",
+          materialTape: "жабысқақ таспа",
+          materialRuler: "сызғыш",
+          materialJar: "мөлдір банка",
+          materialSpoon: "қасық",
+          materialNotebook: "дәптер",
+          materialPencil: "қарындаш",
+          materialCode: "шифр жазатын парақ",
+          materialColors: "түрлі түсті қарындаштар",
+          materialCardboard: "қатырма қағаз",
+          materialTorch: "шам",
+          materialBall: "кішкентай доп",
+          materialRecycled: "макетке арналған материалдар",
+          materialRubber: "резеңке таспалар",
+          materialBox: "бос қорап",
+          materialStraw: "түтікше",
+          materialPin: "түйреуіш",
+          materialGravel: "қиыршық тас не құм",
+          materialFilter: "қағаз сүзгі",
+          materialString: "жіп",
+          materialTapeMeasure: "өлшеуіш таспа",
+          lockProjectTitle: "Жобаға жазылым арқылы қол жеткізуге болады",
+          lockedTitle: "Қосымша жоба",
+          lockedDescription:
+            "Осы жобаны және бүкіл қосымша топтаманы ашу үшін тегін жазыл.",
+          subscriptionPaused:
+            "Қосымша жобалар әзірге жабық. Оларды кейінірек ашамыз.",
+          lockedButton: "Қолжетімділікті ашу",
+          categoryNature: "Табиғат",
+          categoryEngineering: "Инженерия",
+          categoryScience: "Ғылым",
+          categoryTechnology: "Технология",
+          categoryArt: "Шығармашылық",
+          categorySpace: "Ғарыш",
+          categoryDesign: "Дизайн",
+          categoryRobotics: "Робот техникасы",
+          levelBeginner: "Бастапқы",
+          levelIntermediate: "Орташа",
+          levelAdvanced: "Жоғары",
+          freeLabel: "Тегін",
+          premiumLabel: "Жазылушыларға",
+          projectAction: "Жобаны көру",
+          lockedAction: "Жазылыммен ашу",
+          adminEntry: "Әкімшіге кіру",
+          adminBack: "← Басты бетке",
+          adminEyebrow: "Жабық бөлім",
+          adminLoginTitle: "Әкімші кіруі",
+          adminEmail: "Электрондық пошта",
+          adminPassword: "Құпиясөз",
+          adminLoginButton: "Кіру",
+          adminDashboardTitle: "Әкімші панелі",
+          adminLogout: "Шығу",
+          adminProjectsTab: "Жобалар",
+          adminSubscriptionsTab: "Жазылымдар",
+          adminProjectFormTitle: "Жоба қосу",
+          adminProjectId: "ID (латын әріптері)",
+          adminProjectCategory: "Санат",
+          adminProjectLevel: "Деңгей",
+          adminProjectIcon: "Белгіше (emoji)",
+          adminProjectColor: "Карточка түсі",
+          adminProjectFree: "Тегін жоба",
+          adminTitleRu: "Атауы (RU)",
+          adminTitleKz: "Атауы (KZ)",
+          adminTitleEn: "Атауы (EN)",
+          adminDescriptionRu: "Сипаттамасы (RU)",
+          adminDescriptionKz: "Сипаттамасы (KZ)",
+          adminDescriptionEn: "Сипаттамасы (EN)",
+          adminProjectSave: "Жобаны сақтау",
+          adminProjectCancel: "Болдырмау",
+          adminProjectsList: "Жобалар",
+          adminSubscriptionsTitle: "Өтінімдер мен жазылымдар",
+          adminEdit: "Өзгерту",
+          adminDelete: "Жою",
+          adminActive: "Белсенді",
+          adminInactive: "Белсенді емес",
+          adminEmpty: "Әзірге жазба жоқ.",
+          adminLoginError: "Кіру мүмкін болмады. Деректерді тексеріңіз.",
+          adminApiError: "Деректер жүктелмеді. Серверді тексеріңіз.",
+          adminSaving: "Сақталуда…",
+          adminSaved: "Өзгерістер сақталды.",
+          adminSaveError: "Өзгерістерді сақтау мүмкін болмады.",
+          adminDeleteConfirm: "Бұл жобаны жоясыз ба?",
+          adminSessionEnded: "Сессия аяқталды. Қайта кіріңіз.",
+        },
+        en: {
+          navAbout: "About",
+          navProjects: "Projects",
+          navSubscribe: "Subscribe",
+          navContact: "Contact",
+          heroEyebrow: "Learn. Explore. Create.",
+          heroTitle: "Big ideas<br>start <span>here.</span>",
+          heroText:
+            "A place where curiosity turns into real projects. Explore, experiment and build the future with your own hands.",
+          heroButton: "Find your project",
+          aboutButton: "About us",
+          heroNote:
+            "<strong>For the curious</strong> — from first ideas to prototypes",
+          artIdea: "Idea discovered",
+          artIdeaSub: "Time to explore",
+          artGrow: "Growing together",
+          artGrowSub: "One step at a time",
+          statProjects: "open projects",
+          statLanguages: "learning languages",
+          statIdeas: "ideas to explore",
+          projectsEyebrow: "The idea workshop",
+          projectsTitle: "Projects to get started",
+          projectsIntro:
+            "Start with short, approachable experiments. Every project is a chance to learn something new and make it yourself.",
+          aboutTag: "A place for your idea",
+          aboutEyebrow: "What is STEM Park?",
+          aboutTitle: "Don't just read. Try it.",
+          aboutText:
+            "STEM Park is an online space for anyone who wants to understand how the world works. We bring together ideas and hands-on projects across science, technology, engineering, art and mathematics — making learning engaging and real.",
+          point1Title: "Clear from the first step",
+          point1Text: "Simple explanations and clear instructions.",
+          point2Title: "Learn by doing",
+          point2Text: "Test ideas and make something real.",
+          point3Title: "Made for everyone",
+          point3Text: "Start with whatever interests you.",
+          point4Title: "Room to grow",
+          point4Text: "New topics and projects keep coming.",
+          subscribeEyebrow: "The next level",
+          subscribeTitle: "More ideas. More possibilities.",
+          subscribeText:
+            "Enter your email to continue to checkout. Extra projects unlock after the server confirms your payment.",
+          emailLabel: "Your email address",
+          subscribeButton: "Continue to payment",
+          subscribeFineprint:
+            "Project access is granted only after the server confirms payment.",
+          unlockLink: "Explore extra projects →",
+          subscribeLoading: "Creating your checkout…",
+          subscribeReady:
+            "Subscription confirmed by the server. Extra projects are unlocked.",
+          subscribeSent: "Checkout created. Redirecting to payment…",
+          notifyNotConfigured:
+            "The payment server isn't connected yet. Free projects remain available.",
+          subscribeError:
+            "Could not create checkout. Check the server connection and try again.",
+          checkoutServerError:
+            "The payment server isn't available yet. Check the API connection and try again later.",
+          paymentPending:
+            "Payment isn't confirmed yet. Access will open after Kaspi confirms it.",
+          paymentCancelled:
+            "Payment cancelled. Free projects remain available.",
+          paymentChecking: "Checking payment status…",
+          paymentNotificationError:
+            "Checkout was created, but the notification could not be sent. Check Formspree.",
+          footerText:
+            "A space where curiosity becomes action and ideas become real projects.",
+          footerExplore: "Explore",
+          contactTitle: "Have an idea or question?",
+          contactName: "Name",
+          contactEmail: "Email",
+          contactMessage: "Message",
+          contactSend: "Send message",
+          contactLoading: "Sending your message…",
+          contactSent: "Thanks! Your message has been sent.",
+          contactNotConfigured:
+            "The form isn't configured yet: add a Formspree endpoint in the code.",
+          contactError:
+            "Message could not be sent. Check the Formspree endpoint and try again.",
+          copyright: "Made with curiosity.",
+          authors: 'Created by <a href="#contact">the STEM Park team</a>',
+          filterAll: "All projects",
+          projectsCount: "projects available",
+          noProjects: "There are no projects in this category yet.",
+          detailBack: "← Back to projects",
+          detailEyebrow: "Hands-on project",
+          materialsTitle: "What you'll need",
+          stepsTitle: "How to get started",
+          stepOne:
+            "Explore the challenge and write down what result you expect.",
+          stepTwo: "Build a model or run an experiment with these materials.",
+          stepThree:
+            "Record your observations, compare them with your prediction and improve your project.",
+          detailButton: "Back to projects",
+          materialSeed: "seeds",
+          materialCup: "clear cup",
+          materialSoil: "cotton or soil",
+          materialWater: "water",
+          materialPaper: "paper",
+          materialScissors: "scissors",
+          materialTape: "adhesive tape",
+          materialRuler: "ruler",
+          materialJar: "clear jar",
+          materialSpoon: "spoon",
+          materialNotebook: "notebook",
+          materialPencil: "pencil",
+          materialCode: "paper for a cipher",
+          materialColors: "coloured pencils",
+          materialCardboard: "cardboard",
+          materialTorch: "torch",
+          materialBall: "small ball",
+          materialRecycled: "model-making materials",
+          materialRubber: "rubber bands",
+          materialBox: "empty box",
+          materialStraw: "drinking straw",
+          materialPin: "pin",
+          materialGravel: "gravel or sand",
+          materialFilter: "paper filter",
+          materialString: "string",
+          materialTapeMeasure: "measuring tape",
+          lockProjectTitle: "This project is available with a subscription",
+          lockedTitle: "Extra project",
+          lockedDescription:
+            "Subscribe for free to unlock this project and the full extra collection.",
+          subscriptionPaused:
+            "Extra projects are temporarily closed. We will open them later.",
+          lockedButton: "Unlock access",
+          categoryNature: "Nature",
+          categoryEngineering: "Engineering",
+          categoryScience: "Science",
+          categoryTechnology: "Technology",
+          categoryArt: "Creative",
+          categorySpace: "Space",
+          categoryDesign: "Design",
+          categoryRobotics: "Robotics",
+          levelBeginner: "Beginner",
+          levelIntermediate: "Intermediate",
+          levelAdvanced: "Advanced",
+          freeLabel: "Free",
+          premiumLabel: "For subscribers",
+          projectAction: "Explore project",
+          lockedAction: "Unlock with subscription",
+          adminEntry: "Admin sign in",
+          adminBack: "← Back home",
+          adminEyebrow: "Restricted area",
+          adminLoginTitle: "Administrator sign in",
+          adminEmail: "Email address",
+          adminPassword: "Password",
+          adminLoginButton: "Sign in",
+          adminDashboardTitle: "Admin dashboard",
+          adminLogout: "Sign out",
+          adminProjectsTab: "Projects",
+          adminSubscriptionsTab: "Subscriptions",
+          adminProjectFormTitle: "Add a project",
+          adminProjectId: "ID (lowercase letters)",
+          adminProjectCategory: "Category",
+          adminProjectLevel: "Level",
+          adminProjectIcon: "Icon (emoji)",
+          adminProjectColor: "Card colour",
+          adminProjectFree: "Free project",
+          adminTitleRu: "Title (RU)",
+          adminTitleKz: "Title (KZ)",
+          adminTitleEn: "Title (EN)",
+          adminDescriptionRu: "Description (RU)",
+          adminDescriptionKz: "Description (KZ)",
+          adminDescriptionEn: "Description (EN)",
+          adminProjectSave: "Save project",
+          adminProjectCancel: "Cancel",
+          adminProjectsList: "Projects",
+          adminSubscriptionsTitle: "Requests and subscriptions",
+          adminEdit: "Edit",
+          adminDelete: "Delete",
+          adminActive: "Active",
+          adminInactive: "Inactive",
+          adminEmpty: "No records yet.",
+          adminLoginError: "Sign in failed. Check your credentials.",
+          adminApiError: "Could not load data. Check the server.",
+          adminSaving: "Saving…",
+          adminSaved: "Changes saved.",
+          adminSaveError: "Could not save changes.",
+          adminDeleteConfirm: "Delete this project?",
+          adminSessionEnded: "Session ended. Please sign in again.",
+        },
+      };
+
+      // Backend contract:
+      // POST /api/subscriptions/checkout { email, provider, successUrl, cancelUrl } -> { checkoutUrl }
+      // GET /api/subscriptions/me -> { active: boolean }; the backend must verify Kaspi payment
+      // and associate the entitlement with a secure server-side session, never a browser flag.
+      // GET /api/projects -> { projects: [...] } returns only projects this session can access.
+      // POST /api/admin/login returns { authenticated, csrfToken }; GET /api/admin/session returns the same.
+      // Use an HttpOnly, Secure, SameSite session cookie; validate Origin and CSRF tokens on mutations.
+      // Admin API: GET/POST /api/admin/projects, PUT/DELETE /api/admin/projects/:id,
+      // GET /api/admin/subscriptions. Every admin endpoint must authorize the server-side admin session.
+      // Keep Kaspi credentials and premium project content on the server, not in this file.
+      const FORMSPREE_ENDPOINT = "https://formspree.io/f/mvkgjlgo";
+      const API_BASE_URL = "";
+      const SUBSCRIPTIONS_ENABLED = false;
+      // Temporary client-side gate only; this code is visible in the page source.
+      const ADMIN_ACCESS_CODE = "2407";
+      const materialsByCategory = {
+        nature: [
+          "materialSeed",
+          "materialCup",
+          "materialSoil",
+          "materialWater",
+        ],
+        engineering: [
+          "materialPaper",
+          "materialScissors",
+          "materialTape",
+          "materialRuler",
+        ],
+        science: [
+          "materialJar",
+          "materialWater",
+          "materialSpoon",
+          "materialNotebook",
+        ],
+        technology: [
+          "materialPaper",
+          "materialPencil",
+          "materialNotebook",
+          "materialTape",
+        ],
+        art: [
+          "materialPaper",
+          "materialColors",
+          "materialWater",
+          "materialNotebook",
+        ],
+        space: [
+          "materialCardboard",
+          "materialBall",
+          "materialTorch",
+          "materialTape",
+        ],
+        design: [
+          "materialPaper",
+          "materialPencil",
+          "materialRecycled",
+          "materialRuler",
+        ],
+        robotics: [
+          "materialCardboard",
+          "materialRubber",
+          "materialTape",
+          "materialPencil",
+        ],
+      };
+      const materialsByProject = {
+        "secret-code": ["materialCode", "materialPencil", "materialNotebook"],
+        "wind-power": [
+          "materialPaper",
+          "materialScissors",
+          "materialStraw",
+          "materialPin",
+          "materialPencil",
+        ],
+        "music-machine": ["materialBox", "materialRubber", "materialRuler"],
+        "water-filter": [
+          "materialCup",
+          "materialWater",
+          "materialGravel",
+          "materialFilter",
+        ],
+      };
+      let language = localStorage.getItem("stem-park-language") || "ru";
+      let subscribed = false;
+      let adminAuthenticated = false;
+      let adminPinVerified = false;
+      let editingProjectId = null;
+      let csrfToken = "";
+      let activeCategory = "all";
+      const projectGrid = document.getElementById("project-grid");
+      const projectFilters = document.getElementById("project-filters");
+      const projectCount = document.getElementById("project-count");
+      const projectDetailContent = document.getElementById(
+        "project-detail-content",
+      );
+      const projectDetailSection = document.getElementById("project-detail");
+      const subscribeStatus = document.getElementById("subscribe-status");
+      const unlockLink = document.getElementById("unlock-link");
+
+      function text(key) {
+        return translations[language][key] || translations.ru[key] || key;
+      }
+      function escapeHtml(value) {
+        return String(value ?? "").replace(
+          /[&<>"']/g,
+          (character) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[character],
+        );
+      }
+      function isValidProject(project) {
+        const categories = [
+          "nature",
+          "engineering",
+          "science",
+          "technology",
+          "art",
+          "space",
+          "design",
+          "robotics",
+        ];
+        const levels = ["beginner", "intermediate", "advanced"];
+        return Boolean(
+          project &&
+          typeof project.id === "string" &&
+          /^[a-z0-9-]+$/.test(project.id) &&
+          categories.includes(project.category) &&
+          levels.includes(project.level) &&
+          typeof project.icon === "string" &&
+          project.icon.length <= 8 &&
+          typeof project.color === "string" &&
+          /^#[0-9a-f]{6}$/i.test(project.color) &&
+          typeof project.free === "boolean" &&
+          ["ru", "kz", "en"].every(
+            (locale) =>
+              typeof project.title?.[locale] === "string" &&
+              typeof project.description?.[locale] === "string",
+          ),
+        );
+      }
+      function categoryKey(category) {
+        return `category${category[0].toUpperCase()}${category.slice(1)}`;
+      }
+      function levelKey(level) {
+        return `level${level[0].toUpperCase()}${level.slice(1)}`;
+      }
+
+      function renderFilters(visibleProjects) {
+        const categories = [
+          ...new Set(visibleProjects.map((project) => project.category)),
+        ];
+        if (activeCategory !== "all" && !categories.includes(activeCategory))
+          activeCategory = "all";
+        const buttons = [
+          { id: "all", label: text("filterAll") },
+          ...categories.map((category) => ({
+            id: category,
+            label: text(categoryKey(category)),
+          })),
+        ];
+        projectFilters.innerHTML = buttons
+          .map(
+            (category) =>
+              `<button class="filter-button${activeCategory === category.id ? " active" : ""}" type="button" data-category="${category.id}" aria-pressed="${activeCategory === category.id}">${category.label}</button>`,
+          )
+          .join("");
+        projectFilters.querySelectorAll(".filter-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            activeCategory = button.dataset.category;
+            renderProjects();
+          });
+        });
+      }
+
+      function renderProjects() {
+        const visibleProjects = projects.filter(
+          (project) =>
+            project.free || (SUBSCRIPTIONS_ENABLED && subscribed),
+        );
+        renderFilters(visibleProjects);
+        const shown = visibleProjects.filter(
+          (project) =>
+            activeCategory === "all" || project.category === activeCategory,
+        );
+        projectCount.textContent = `${shown.length} ${text("projectsCount")}`;
+        if (!shown.length) {
+          projectGrid.innerHTML = `<p class="project-count">${text("noProjects")}</p>`;
+          return;
+        }
+        projectGrid.innerHTML = shown
+          .map((project, index) => {
+            const title = project.title[language] || project.title.en;
+            const description =
+              project.description[language] || project.description.en;
+            return `<article class="project-card">
+          <div class="project-visual" style="background:${project.color}">
+            <span class="project-number">${String(index + 1).padStart(2, "0")} / ${String(shown.length).padStart(2, "0")}</span>
+            <span class="project-icon" aria-hidden="true">${escapeHtml(project.icon)}</span>
+          </div>
+          <div class="project-info">
+            <div class="project-meta"><span>${text(categoryKey(project.category))}</span><span>${text(levelKey(project.level))}</span></div>
+            <h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><a class="project-link" href="#project/${encodeURIComponent(project.id)}">${text("projectAction")} <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>`;
+          })
+          .join("");
+      }
+
+      function renderProjectRoute(shouldScroll = true) {
+        const wasProjectRoute =
+          document.body.classList.contains("route-project");
+        if (window.location.hash === "#admin") {
+          document.body.classList.remove("route-project");
+          return;
+        }
+        const route = window.location.hash.match(/^#project\/([a-z0-9-]+)$/);
+        if (!route) {
+          document.body.classList.remove("route-project");
+          document.title = "STEM Park — идеи становятся проектами";
+          if (
+            shouldScroll &&
+            wasProjectRoute &&
+            window.location.hash.length > 1
+          ) {
+            const target = document.getElementById(
+              window.location.hash.slice(1),
+            );
+            if (target)
+              window.setTimeout(
+                () => target.scrollIntoView({ behavior: "smooth" }),
+                0,
+              );
+          }
+          return;
+        }
+
+        const project = projects.find((item) => item.id === route[1]);
+        if (!project) {
+          window.location.hash = "#projects";
+          return;
+        }
+
+        document.body.classList.add("route-project");
+        const title = project.title[language] || project.title.en;
+        const description =
+          project.description[language] || project.description.en;
+        const visualColor = isValidProject(project) ? project.color : "#e2edff";
+        document.title = `${title} — STEM Park`;
+        if (!project.free && (!SUBSCRIPTIONS_ENABLED || !subscribed)) {
+          projectDetailContent.innerHTML = `<a class="detail-back" href="#projects">${text("detailBack")}</a>
+          <div class="detail-locked"><div class="lock-icon" aria-hidden="true">🔒</div>
+            <span class="eyebrow">${text("premiumLabel")}</span>
+            <h1>${text("lockProjectTitle")}</h1>
+            <p>${text(SUBSCRIPTIONS_ENABLED ? "lockedDescription" : "subscriptionPaused")}</p>
+            ${
+              SUBSCRIPTIONS_ENABLED
+                ? `<a class="button" href="#subscribe">${text("lockedButton")} <span aria-hidden="true">↗</span></a>`
+                : ""
+            }
+          </div>`;
+        } else {
+          const materials = materialsByProject[project.id] ||
+            materialsByCategory[project.category] || [
+              "materialPaper",
+              "materialPencil",
+              "materialNotebook",
+            ];
+          projectDetailContent.innerHTML = `<a class="detail-back" href="#projects">${text("detailBack")}</a>
+          <div class="detail-layout">
+            <div class="detail-visual" style="background:${visualColor}"><span class="detail-icon" aria-hidden="true">${escapeHtml(project.icon)}</span></div>
+            <article class="detail-copy">
+              <div class="detail-badges"><span class="detail-badge">${text(categoryKey(project.category))}</span><span class="detail-badge">${text(levelKey(project.level))}</span><span class="detail-badge">${project.free ? text("freeLabel") : text("premiumLabel")}</span></div>
+              <h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>
+              <section class="detail-panel"><h2>${text("materialsTitle")}</h2><ul class="materials-list">${materials.map((key) => `<li>${text(key)}</li>`).join("")}</ul></section>
+              <section class="detail-panel"><h2>${text("stepsTitle")}</h2><ol class="guide-steps"><li>${text("stepOne")}</li><li>${text("stepTwo")}</li><li>${text("stepThree")}</li></ol></section>
+              <a class="button secondary" href="#projects">${text("detailButton")}</a>
+            </article>
+          </div>`;
+        }
+        if (shouldScroll)
+          projectDetailSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+      }
+
+      function applyLanguage(nextLanguage) {
+        language = translations[nextLanguage] ? nextLanguage : "ru";
+        localStorage.setItem("stem-park-language", language);
+        document.documentElement.lang = language;
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const value = text(element.dataset.i18n);
+          if (element.id === "subscribe-status" && subscribed) return;
+          element.textContent = value;
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+          element.innerHTML = text(element.dataset.i18nHtml);
+        });
+        document.querySelectorAll(".lang-btn").forEach((button) => {
+          const active = button.dataset.lang === language;
+          button.classList.toggle("active", active);
+          button.setAttribute("aria-pressed", String(active));
+        });
+        document
+          .querySelector(".menu-toggle")
+          .setAttribute("aria-label", text("navProjects"));
+        renderProjects();
+        renderProjectRoute(false);
+        if (subscribed)
+          showSubscriptionState(text("subscribeReady"), "success");
+        renderAdminRoute(false);
+      }
+
+      function setAdminStatus(elementId, message, type = "") {
+        const element = document.getElementById(elementId);
+        element.textContent = message;
+        element.className = `admin-status ${type}`;
+      }
+
+      function renderAdminProjects(records) {
+        const container = document.getElementById("admin-project-records");
+        if (!records.length) {
+          container.innerHTML = `<p class="project-count">${text("adminEmpty")}</p>`;
+          return;
+        }
+        container.innerHTML = records
+          .map((project) => {
+            const title =
+              project.title?.[language] || project.title?.en || project.id;
+            const id = String(project.id);
+            return `<article class="admin-record">
+          <div><h3>${escapeHtml(project.icon || "💡")} ${escapeHtml(title)}</h3><p>${escapeHtml(id)} · ${escapeHtml(text(project.free ? "freeLabel" : "premiumLabel"))} · ${escapeHtml(text(categoryKey(project.category)))}</p></div>
+          <div class="admin-record-actions"><button type="button" data-edit-project="${escapeHtml(id)}">${text("adminEdit")}</button><button class="danger" type="button" data-delete-project="${escapeHtml(id)}">${text("adminDelete")}</button></div>
+        </article>`;
+          })
+          .join("");
+        container
+          .querySelectorAll("[data-edit-project]")
+          .forEach((button) =>
+            button.addEventListener("click", () =>
+              editAdminProject(records, button.dataset.editProject),
+            ),
+          );
+        container
+          .querySelectorAll("[data-delete-project]")
+          .forEach((button) =>
+            button.addEventListener("click", () =>
+              deleteAdminProject(button.dataset.deleteProject),
+            ),
+          );
+      }
+
+      function renderAdminSubscriptions(records) {
+        const container = document.getElementById("admin-subscription-records");
+        if (!records.length) {
+          container.innerHTML = `<p class="project-count">${text("adminEmpty")}</p>`;
+          return;
+        }
+        container.innerHTML = records
+          .map((record) => {
+            const active = record.active === true;
+            const status = active ? text("adminActive") : text("adminInactive");
+            const expiresAt = record.expiresAt
+              ? ` · ${escapeHtml(record.expiresAt)}`
+              : "";
+            return `<article class="admin-record"><div><h3>${escapeHtml(record.email || "—")}</h3><p>${escapeHtml(status)}${expiresAt}</p></div></article>`;
+          })
+          .join("");
+      }
+
+      async function loadAdminProjects() {
+        const result = await requestApi("/api/admin/projects");
+        if (!Array.isArray(result.projects))
+          throw new Error("Admin projects API must return a projects array");
+        if (!result.projects.every(isValidProject))
+          throw new Error("Admin projects API returned an invalid project");
+        renderAdminProjects(result.projects);
+        projects.splice(0, projects.length, ...result.projects);
+        renderProjects();
+        renderProjectRoute(false);
+      }
+
+      async function loadAdminSubscriptions() {
+        const result = await requestApi("/api/admin/subscriptions");
+        if (!Array.isArray(result.subscriptions))
+          throw new Error(
+            "Admin subscriptions API must return a subscriptions array",
+          );
+        renderAdminSubscriptions(result.subscriptions);
+      }
+
+      async function renderAdminRoute(shouldLoad = true) {
+        const isAdminRoute = window.location.hash === "#admin";
+        if (!isAdminRoute) {
+          document.body.classList.remove("route-admin");
+          return;
+        }
+        document.body.classList.add("route-admin");
+        document.title = `${text("adminDashboardTitle")} — STEM Park`;
+        const loginView = document.getElementById("admin-login-view");
+        const dashboard = document.getElementById("admin-dashboard");
+        if (!shouldLoad) return;
+        loginView.hidden = adminPinVerified;
+        dashboard.hidden = !adminPinVerified;
+      }
+
+      function editAdminProject(records, id) {
+        const project = records.find((item) => item.id === id);
+        if (!project) return;
+        editingProjectId = id;
+        const form = document.getElementById("admin-project-form");
+        form.elements.id.value = project.id;
+        form.elements.category.value = project.category;
+        form.elements.level.value = project.level;
+        form.elements.icon.value = project.icon;
+        form.elements.color.value = project.color;
+        form.elements.free.checked = project.free;
+        form.elements.titleRu.value = project.title?.ru || "";
+        form.elements.titleKz.value = project.title?.kz || "";
+        form.elements.titleEn.value = project.title?.en || "";
+        form.elements.descriptionRu.value = project.description?.ru || "";
+        form.elements.descriptionKz.value = project.description?.kz || "";
+        form.elements.descriptionEn.value = project.description?.en || "";
+        form.elements.id.disabled = true;
+        document.getElementById("admin-project-save").textContent =
+          text("adminEdit");
+        document.getElementById("admin-project-cancel").hidden = false;
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function resetAdminProjectForm() {
+        const form = document.getElementById("admin-project-form");
+        form.reset();
+        form.elements.id.disabled = false;
+        form.elements.icon.value = "💡";
+        form.elements.color.value = "#e2edff";
+        editingProjectId = null;
+        document.getElementById("admin-project-save").textContent =
+          text("adminProjectSave");
+        document.getElementById("admin-project-cancel").hidden = true;
+      }
+
+      function adminProjectPayload(form) {
+        const values = new FormData(form);
+        return {
+          id: editingProjectId || values.get("id").toString().trim(),
+          category: values.get("category").toString(),
+          level: values.get("level").toString(),
+          icon: values.get("icon").toString().trim(),
+          color: values.get("color").toString(),
+          free: form.elements.free.checked,
+          title: {
+            ru: values.get("titleRu").toString().trim(),
+            kz: values.get("titleKz").toString().trim(),
+            en: values.get("titleEn").toString().trim(),
+          },
+          description: {
+            ru: values.get("descriptionRu").toString().trim(),
+            kz: values.get("descriptionKz").toString().trim(),
+            en: values.get("descriptionEn").toString().trim(),
+          },
+        };
+      }
+
+      async function deleteAdminProject(id) {
+        if (!window.confirm(text("adminDeleteConfirm"))) return;
+        try {
+          await requestApi(`/api/admin/projects/${encodeURIComponent(id)}`, {
+            method: "DELETE",
+          });
+          await loadAdminProjects();
+          setAdminStatus("admin-project-status", text("adminSaved"), "success");
+        } catch (error) {
+          console.error("Could not delete admin project:", error);
+          setAdminStatus(
+            "admin-project-status",
+            text("adminSaveError"),
+            "error",
+          );
+        }
+      }
+
+      function showSubscriptionState(message, type) {
+        subscribeStatus.textContent = message;
+        subscribeStatus.className = `form-note ${type || ""}`;
+        unlockLink.classList.toggle("visible", subscribed);
+      }
+
+      async function requestApi(path, options = {}) {
+        const response = await fetch(`${API_BASE_URL}${path}`, {
+          ...options,
+          credentials: "same-origin",
+          headers: {
+            Accept: "application/json",
+            ...(options.body ? { "Content-Type": "application/json" } : {}),
+            ...(csrfToken ? { "X-CSRF-Token": csrfToken } : {}),
+            ...options.headers,
+          },
+        });
+        if (!response.ok)
+          throw new Error(`API ${path} returned ${response.status}`);
+        return response.json();
+      }
+
+      async function refreshSubscription() {
+        const result = await requestApi("/api/subscriptions/me");
+        if (typeof result.active !== "boolean")
+          throw new Error("Subscription API must return an active boolean");
+        subscribed = result.active;
+        renderProjects();
+        renderProjectRoute(false);
+        if (subscribed)
+          showSubscriptionState(text("subscribeReady"), "success");
+        return subscribed;
+      }
+
+      async function loadPublicProjects() {
+        const result = await requestApi("/api/projects");
+        if (!Array.isArray(result.projects))
+          throw new Error("Projects API must return a projects array");
+        const validProjects = result.projects.filter(isValidProject);
+        if (validProjects.length !== result.projects.length)
+          throw new Error("Projects API returned an invalid project");
+        projects.splice(0, projects.length, ...validProjects);
+        renderProjects();
+        renderProjectRoute(false);
+      }
+
+      async function handlePaymentReturn() {
+        const paymentState = new URLSearchParams(window.location.search).get(
+          "payment",
+        );
+        if (paymentState === "cancelled") {
+          showSubscriptionState(text("paymentCancelled"), "");
+          return;
+        }
+        if (paymentState !== "success") {
+          try {
+            await refreshSubscription();
+          } catch (error) {
+            console.warn("Subscription status is not available:", error);
+          }
+          return;
+        }
+
+        showSubscriptionState(text("paymentChecking"), "");
+        for (let attempt = 0; attempt < 8; attempt++) {
+          try {
+            if (await refreshSubscription()) {
+              const url = new URL(window.location.href);
+              url.searchParams.delete("payment");
+              window.history.replaceState({}, "", url);
+              return;
+            }
+          } catch (error) {
+            console.error("Could not verify subscription payment:", error);
+          }
+          if (attempt < 7)
+            await new Promise((resolve) => window.setTimeout(resolve, 2000));
+        }
+        showSubscriptionState(text("paymentPending"), "error");
+      }
+
+      async function sendToFormspree(data) {
+        if (!FORMSPREE_ENDPOINT) return "not-configured";
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (!response.ok)
+          throw new Error(`Formspree returned ${response.status}`);
+        return "sent";
+      }
+
+      document
+        .querySelectorAll(".lang-btn")
+        .forEach((button) =>
+          button.addEventListener("click", () =>
+            applyLanguage(button.dataset.lang),
+          ),
+        );
+      window.addEventListener("hashchange", () => {
+        renderProjectRoute();
+        renderAdminRoute();
+      });
+      document
+        .getElementById("admin-login-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const form = event.currentTarget;
+          const button = form.querySelector('button[type="submit"]');
+          button.disabled = true;
+          const password = new FormData(form).get("password").toString();
+          if (password !== ADMIN_ACCESS_CODE) {
+            setAdminStatus(
+              "admin-login-status",
+              text("adminLoginError"),
+              "error",
+            );
+            button.disabled = false;
+            form.reset();
+            return;
+          }
+
+          adminPinVerified = true;
+          document.getElementById("admin-login-view").hidden = true;
+          document.getElementById("admin-dashboard").hidden = false;
+          form.reset();
+          setAdminStatus("admin-project-status", "");
+          setAdminStatus("admin-subscription-status", "");
+          try {
+            const result = await requestApi("/api/admin/login", {
+              method: "POST",
+              body: JSON.stringify({ password }),
+            });
+            if (result.authenticated !== true)
+              throw new Error("Admin login was not confirmed");
+            if (typeof result.csrfToken !== "string" || !result.csrfToken)
+              throw new Error("Admin login did not return a CSRF token");
+            adminAuthenticated = true;
+            csrfToken = result.csrfToken;
+            await loadAdminProjects();
+            await loadAdminSubscriptions();
+          } catch (error) {
+            console.error("Admin sign-in failed:", error);
+            adminAuthenticated = false;
+            setAdminStatus(
+              "admin-project-status",
+              text("adminApiError"),
+              "error",
+            );
+            setAdminStatus(
+              "admin-subscription-status",
+              text("adminApiError"),
+              "error",
+            );
+          } finally {
+            button.disabled = false;
+          }
+        });
+
+      document
+        .getElementById("admin-logout")
+        .addEventListener("click", async () => {
+          try {
+            await requestApi("/api/admin/logout", {
+              method: "POST",
+              body: JSON.stringify({}),
+            });
+          } catch (error) {
+            console.error("Admin sign-out failed:", error);
+          }
+          adminAuthenticated = false;
+          adminPinVerified = false;
+          csrfToken = "";
+          document.getElementById("admin-dashboard").hidden = true;
+          document.getElementById("admin-login-view").hidden = false;
+          setAdminStatus("admin-login-status", "");
+          window.location.hash = "#admin";
+        });
+
+      document.querySelectorAll("[data-admin-tab]").forEach((button) =>
+        button.addEventListener("click", async () => {
+          if (!adminAuthenticated) return;
+          const showProjects = button.dataset.adminTab === "projects";
+          document.querySelectorAll("[data-admin-tab]").forEach((tab) => {
+            const active = tab === button;
+            tab.classList.toggle("active", active);
+            tab.setAttribute("aria-selected", String(active));
+          });
+          document.getElementById("admin-projects-view").hidden = !showProjects;
+          document.getElementById("admin-subscriptions-view").hidden =
+            showProjects;
+          if (!showProjects) {
+            setAdminStatus("admin-subscription-status", text("adminSaving"));
+            try {
+              await loadAdminSubscriptions();
+              setAdminStatus("admin-subscription-status", "");
+            } catch (error) {
+              console.error("Could not load admin subscriptions:", error);
+              setAdminStatus(
+                "admin-subscription-status",
+                text("adminApiError"),
+                "error",
+              );
+            }
+          }
+        }),
+      );
+
+      document
+        .getElementById("admin-project-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!adminAuthenticated) return;
+          const form = event.currentTarget;
+          const button = document.getElementById("admin-project-save");
+          button.disabled = true;
+          setAdminStatus("admin-project-status", text("adminSaving"));
+          const project = adminProjectPayload(form);
+          if (editingProjectId) project.id = editingProjectId;
+          try {
+            const path = editingProjectId
+              ? `/api/admin/projects/${encodeURIComponent(editingProjectId)}`
+              : "/api/admin/projects";
+            await requestApi(path, {
+              method: editingProjectId ? "PUT" : "POST",
+              body: JSON.stringify(project),
+            });
+            resetAdminProjectForm();
+            await loadAdminProjects();
+            setAdminStatus(
+              "admin-project-status",
+              text("adminSaved"),
+              "success",
+            );
+          } catch (error) {
+            console.error("Could not save admin project:", error);
+            setAdminStatus(
+              "admin-project-status",
+              error.message.includes("API ")
+                ? text("adminApiError")
+                : text("adminSaveError"),
+              "error",
+            );
+          } finally {
+            button.disabled = false;
+          }
+        });
+      document
+        .getElementById("admin-project-cancel")
+        .addEventListener("click", resetAdminProjectForm);
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", (event) => {
+          const expanded =
+            event.currentTarget.getAttribute("aria-expanded") === "true";
+          event.currentTarget.setAttribute("aria-expanded", String(!expanded));
+          document
+            .getElementById("nav-links")
+            .classList.toggle("open", !expanded);
+        });
+      document.querySelectorAll(".nav-links a").forEach((link) =>
+        link.addEventListener("click", () => {
+          document.getElementById("nav-links").classList.remove("open");
+          document
+            .querySelector(".menu-toggle")
+            .setAttribute("aria-expanded", "false");
+        }),
+      );
+
+      document
+        .getElementById("subscribe-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!SUBSCRIPTIONS_ENABLED) return;
+          const form = event.currentTarget;
+          const email = new FormData(form).get("email").toString().trim();
+          const button = form.querySelector('button[type="submit"]');
+          button.disabled = true;
+          showSubscriptionState(text("subscribeLoading"), "");
+          try {
+            const checkoutUrl = new URL(
+              `${window.location.origin}${window.location.pathname}`,
+            );
+            checkoutUrl.searchParams.set("payment", "success");
+            const cancelUrl = new URL(checkoutUrl);
+            cancelUrl.searchParams.set("payment", "cancelled");
+            const results = await Promise.allSettled([
+              requestApi("/api/subscriptions/checkout", {
+                method: "POST",
+                body: JSON.stringify({
+                  email,
+                  provider: "kaspi",
+                  successUrl: checkoutUrl.toString(),
+                  cancelUrl: cancelUrl.toString(),
+                }),
+              }),
+              sendToFormspree({
+                type: "subscription_checkout",
+                email,
+                language,
+                source: "STEM Park",
+              }),
+            ]);
+            const checkoutResult = results[0];
+            if (results[1].status === "rejected") {
+              console.error(
+                "Subscription notification failed:",
+                results[1].reason,
+              );
+            } else if (results[1].value !== "sent") {
+              console.error(
+                "Subscription notification could not be sent through Formspree.",
+              );
+            }
+            if (checkoutResult.status === "rejected")
+              throw checkoutResult.reason;
+            const paymentUrl = checkoutResult.value.checkoutUrl;
+            if (typeof paymentUrl !== "string")
+              throw new Error("Checkout API must return a checkoutUrl");
+            const parsedPaymentUrl = new URL(paymentUrl, window.location.href);
+            if (
+              parsedPaymentUrl.protocol !== "https:" &&
+              parsedPaymentUrl.hostname !== "localhost"
+            ) {
+              throw new Error("Checkout URL must use HTTPS");
+            }
+            showSubscriptionState(text("subscribeSent"), "success");
+            window.location.assign(parsedPaymentUrl.toString());
+          } catch (error) {
+            console.error("Could not start Kaspi checkout:", error);
+            showSubscriptionState(
+              error instanceof TypeError || error.message.includes("API ")
+                ? text("checkoutServerError")
+                : text("subscribeError"),
+              "error",
+            );
+          } finally {
+            button.disabled = false;
+          }
+        });
+
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const form = event.currentTarget;
+          const status = document.getElementById("contact-status");
+          const button = form.querySelector('button[type="submit"]');
+          const fields = Object.fromEntries(new FormData(form).entries());
+          button.disabled = true;
+          status.className = "form-note";
+          status.textContent = text("contactLoading");
+          try {
+            const result = await sendToFormspree({
+              ...fields,
+              type: "contact",
+              language,
+              source: "STEM Park",
+            });
+            if (result === "sent") {
+              status.textContent = text("contactSent");
+              status.classList.add("success");
+              form.reset();
+            } else {
+              status.textContent = text("contactNotConfigured");
+              status.classList.add("error");
+            }
+          } catch (error) {
+            console.error("Contact form submission failed:", error);
+            status.textContent = text("contactError");
+            status.classList.add("error");
+          } finally {
+            button.disabled = false;
+          }
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.querySelectorAll("[data-subscription-ui]").forEach((element) => {
+        element.hidden = !SUBSCRIPTIONS_ENABLED;
+      });
+      applyLanguage(language);
+      loadPublicProjects().catch((error) => {
+        console.warn(
+          "Public project API is not available; showing the built-in demo catalog:",
+          error,
+        );
+      });
+      renderAdminRoute();
+      if (SUBSCRIPTIONS_ENABLED) handlePaymentReturn();
+    </script>
+  </body>
+</html>
